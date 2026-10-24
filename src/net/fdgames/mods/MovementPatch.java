@@ -1,6 +1,7 @@
 package net.fdgames.mods;
 
 import net.fdgames.GameEntities.Character;
+import net.fdgames.GameEntities.Final.Player;
 import net.fdgames.GameEntities.MapActor$ActorState;
 import net.fdgames.GameLevel.GameLevel;
 
@@ -26,24 +27,35 @@ public class MovementPatch {
     private static final float C = 0.80f;
 
     public static void updateMovement(float f, float f2) {
-        if (!GameLevel.m() && GameLevel.a().ao() != MapActor$ActorState.f && GameLevel.a().ao() != MapActor$ActorState.h) {
-            if (f == 0.0f && f2 == 0.0f) {
-                GameLevel.a().k(0.0f);
-                GameLevel.a().l(0.0f);
-                return;
-            }
-
-            // Normalização vetorial euclidiana para manter velocidade constante em diagonais
-            float len = (float) Math.sqrt(f * f + f2 * f2);
-            if (len > 1.0f) {
-                f /= len;
-                f2 /= len;
-            }
-
-            // Proporção matemática perfeita: ScreenX = 1.60f, ScreenY = 1.60f
-            GameLevel.a().k(C * (f - 2.0f * f2));
-            GameLevel.a().l(C * (f + 2.0f * f2));
+        if (GameLevel.m()) {
+            return;
         }
+
+        Player player = GameLevel.a();
+        if (player == null) {
+            return;
+        }
+
+        if (player.ao() == MapActor$ActorState.f || player.ao() == MapActor$ActorState.h) {
+            return;
+        }
+
+        if (f == 0.0f && f2 == 0.0f) {
+            player.k(0.0f);
+            player.l(0.0f);
+            return;
+        }
+
+        // Normalização vetorial euclidiana para manter velocidade constante em diagonais
+        float len = (float) Math.sqrt(f * f + f2 * f2);
+        if (len > 1.0f) {
+            f /= len;
+            f2 /= len;
+        }
+
+        // Proporção matemática perfeita: ScreenX = 1.60f, ScreenY = 1.60f
+        player.k(C * (f - 2.0f * f2));
+        player.l(C * (f + 2.0f * f2));
     }
 
     /**
@@ -51,11 +63,12 @@ public class MovementPatch {
      * Intercepta Character.H() (o motor de movimentação e pathfinding A* do jogo).
      */
     public static void updateCharacterMovement(Character c) {
-        if (c == null || c.al() == null || c.al().x == -1 || c.al().y == -1) {
+        if (c == null) {
             return;
         }
 
-        if (c.n()) {
+        // Blindagem contra velocidade zumbi / deslizamento quando o destino for cancelado ou alcançado
+        if (c.al() == null || c.al().x == -1 || c.al().y == -1 || c.n()) {
             c.k(0.0f);
             c.l(0.0f);
             return;

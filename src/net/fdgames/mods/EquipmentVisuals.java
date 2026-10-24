@@ -29,12 +29,17 @@ public class EquipmentVisuals {
         }
 
         // 2. Escudo ou arma secundária (slot_offhand)
-        String offhand = inv.n();
-        if (offhand != null && !offhand.isEmpty()) {
-            String assetName = "composite/" + gender + "_offhand_" + offhand;
-            int id = getOrLoadAsset(assetName);
-            if (id != -1) {
-                character.spriteIndex.a(Integer.valueOf(id));
+        // Se a arma principal for de duas mãos (greatsword, bows, greataxe, etc.),
+        // não renderiza item na mão secundária para evitar sobreposição impossível
+        boolean isTwoHanded = (character.sheet.g() != null && character.sheet.g().twohanded);
+        if (!isTwoHanded) {
+            String offhand = inv.n();
+            if (offhand != null && !offhand.isEmpty()) {
+                String assetName = "composite/" + gender + "_offhand_" + offhand;
+                int id = getOrLoadAsset(assetName);
+                if (id != -1) {
+                    character.spriteIndex.a(Integer.valueOf(id));
+                }
             }
         }
     }

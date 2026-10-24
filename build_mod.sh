@@ -1,11 +1,33 @@
 #!/bin/bash
 # ==============================================================================
-# Build Script: Visible Weapons & Shields Mod for Exiled Kingdoms (Steam Linux)
+# Build Script: Exiled Kingdoms Overhaul (Steam Linux)
 # ==============================================================================
 set -e
 
-PROJECT_DIR="/home/yhn/Projetos/exiled-kingdoms-mod"
-GAME_DIR="/home/yhn/.local/share/Steam/steamapps/common/Exiled Kingdoms"
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Detecção Automática do Diretório da Steam no Linux
+if [ -z "$GAME_DIR" ]; then
+    POSSIBLE_PATHS=(
+        "$HOME/.local/share/Steam/steamapps/common/Exiled Kingdoms"
+        "$HOME/.steam/steam/steamapps/common/Exiled Kingdoms"
+        "$HOME/.steam/root/steamapps/common/Exiled Kingdoms"
+        "$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/steamapps/common/Exiled Kingdoms"
+    )
+    for p in "${POSSIBLE_PATHS[@]}"; do
+        if [ -d "$p" ]; then
+            GAME_DIR="$p"
+            break
+        fi
+    done
+fi
+
+if [ -z "$GAME_DIR" ] || [ ! -d "$GAME_DIR" ]; then
+    echo "ERRO: Diretório do Exiled Kingdoms não encontrado na Steam."
+    echo "Defina manualmente a variável GAME_DIR antes de rodar o script."
+    exit 1
+fi
+
 JAR_PATH="$GAME_DIR/exiledkingdoms.jar"
 MODS_DIR="$PROJECT_DIR/mods"
 GAME_MODS_DIR="$GAME_DIR/mods"
@@ -29,14 +51,18 @@ for p in glob.glob("'"$MODS_DIR"'/net/fdgames/mods/*.class"):
         f.write(data)
 '
 
-echo "[3/5] Aplicando bytecode patch em Player.class, NPC.class e P.class com Javassist..."
+echo "[3/5] Aplicando bytecode patch em Player.class, NPC.class, P.class e Character.class com Javassist..."
 cat << 'EOF' > "$PROJECT_DIR/scratch/ModPatcher.java"
 import javassist.*;
 
 public class ModPatcher {
     public static void main(String[] args) throws Exception {
-        String jarPath = "/home/yhn/.local/share/Steam/steamapps/common/Exiled Kingdoms/exiledkingdoms.jar";
-        String modsPath = "/home/yhn/Projetos/exiled-kingdoms-mod/mods";
+        if (args.length < 2) {
+            System.err.println("Uso: ModPatcher <jarPath> <modsPath>");
+            System.exit(1);
+        }
+        String jarPath = args[0];
+        String modsPath = args[1];
 
         ClassPool pool = ClassPool.getDefault();
         pool.appendClassPath(modsPath);
@@ -72,7 +98,7 @@ public class ModPatcher {
 EOF
 
 javac -cp "$PROJECT_DIR/tools/javassist.jar:$JAR_PATH" "$PROJECT_DIR/scratch/ModPatcher.java"
-java -cp "$PROJECT_DIR/scratch:$PROJECT_DIR/tools/javassist.jar:$JAR_PATH" ModPatcher
+java -cp "$PROJECT_DIR/scratch:$PROJECT_DIR/tools/javassist.jar:$JAR_PATH" ModPatcher "$JAR_PATH" "$MODS_DIR"
 
 echo "[4/5] Ajustando versão de classe dos patches para Java 7..."
 python3 -c '
@@ -104,6 +130,6 @@ if ! grep -q '"mods/"' "$GAME_DIR/config.json"; then
 fi
 
 echo "=========================================================="
-echo " MOD DE EQUIPAMENTOS VISÍVEIS INSTALADO COM SUCESSO!"
+echo " MOD EXILED KINGDOMS OVERHAUL COMPILADO E INSTALADO COM SUCESSO!"
 echo " Inicie o Exiled Kingdoms na Steam para jogar."
 echo "=========================================================="
