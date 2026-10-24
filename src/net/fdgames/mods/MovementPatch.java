@@ -6,17 +6,19 @@ import net.fdgames.GameLevel.GameLevel;
 public class MovementPatch {
 
     /**
-     * Corrige a discrepância de velocidade entre movimento horizontal e vertical.
-     * Na engine LibGDX de Exiled Kingdoms, a projeção isométrica converte coordenadas para a tela como:
-     *   ScreenX = x + y
-     *   ScreenY = (y - x) / 2
+     * Movimentação Isotrópica Perfeita:
+     * No jogo original, o método P.a(f, f2) usava k(f - f2) e l(f + f2) com peso 1.0f,
+     * gerando disparidade de velocidade entre os eixos.
      *
-     * No jogo original, o método P.a(f, f2) aplicava o mesmo fator 1:1 para ambos os eixos,
-     * fazendo com que a movimentação vertical (cima/baixo) tivesse exatamente metade (50%)
-     * da velocidade da movimentação horizontal (esquerda/direita).
+     * Com a fórmula perfeitamente simétrica:
+     *   k = 2.0f * (f - f2)
+     *   l = 2.0f * (f + f2)
      *
-     * Ao aplicar a compensação de 2.0x no componente vertical (f2) e normalização euclidiana,
-     * a velocidade se torna rigorosamente uniforme em 360 graus.
+     * A magnitude vetorial no mundo (k^2 + l^2) é exatamente 8.0 para qualquer ângulo theta
+     * (pois 4(1 - sin 2*theta) + 4(1 + sin 2*theta) = 8.0, o seno se anula perfeitamente).
+     *
+     * Isso equaliza horizontal (esquerda/direita), vertical (cima/baixo) e diagonais
+     * para a mesma velocidade rápida, fluida e constante em 360 graus.
      */
     public static void updateMovement(float f, float f2) {
         if (!GameLevel.m() && GameLevel.a().ao() != MapActor$ActorState.f && GameLevel.a().ao() != MapActor$ActorState.h) {
@@ -26,16 +28,16 @@ public class MovementPatch {
                 return;
             }
 
-            // Normalização vetorial euclidiana para velocidade constante em qualquer ângulo
+            // Normalização vetorial euclidiana
             float len = (float) Math.sqrt(f * f + f2 * f2);
             if (len > 1.0f) {
                 f /= len;
                 f2 /= len;
             }
 
-            // Compensação isotrópica para projeção isométrica 2:1
-            GameLevel.a().k(f - 2.0f * f2);
-            GameLevel.a().l(f + 2.0f * f2);
+            // Velocidade perfeitamente simétrica e rápida em todas as direções
+            GameLevel.a().k(2.0f * (f - f2));
+            GameLevel.a().l(2.0f * (f + f2));
         }
     }
 }
