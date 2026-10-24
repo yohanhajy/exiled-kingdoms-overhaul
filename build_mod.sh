@@ -54,11 +54,17 @@ public class ModPatcher {
         mNpcAc.insertAfter("net.fdgames.mods.EquipmentVisuals.apply(this);");
         ctNpc.writeFile(modsPath);
 
-        // 3. Patch P.class (Movimentação Isométrica Uniforme 360 Graus)
+        // 3. Patch P.class (Movimentação Isométrica Uniforme do Jogador 360 Graus)
         CtClass ctP = pool.get("net.fdgames.UI.P");
         CtMethod mPa = ctP.getDeclaredMethod("a", new CtClass[] { CtClass.floatType, CtClass.floatType });
         mPa.setBody("{ net.fdgames.mods.MovementPatch.updateMovement($1, $2); }");
         ctP.writeFile(modsPath);
+
+        // 4. Patch Character.class (Movimentação Isométrica de Inimigos, Monstros e Companheiros)
+        CtClass ctChar = pool.get("net.fdgames.GameEntities.Character");
+        CtMethod mCharH = ctChar.getDeclaredMethod("H");
+        mCharH.setBody("{ net.fdgames.mods.MovementPatch.updateCharacterMovement(this); }");
+        ctChar.writeFile(modsPath);
         
         System.out.println("Bytecode patches executados com sucesso.");
     }
@@ -70,7 +76,12 @@ java -cp "$PROJECT_DIR/scratch:$PROJECT_DIR/tools/javassist.jar:$JAR_PATH" ModPa
 
 echo "[4/5] Ajustando versão de classe dos patches para Java 7..."
 python3 -c '
-for rel in ["net/fdgames/GameEntities/Final/Player.class", "net/fdgames/GameEntities/Final/NPC.class", "net/fdgames/UI/P.class"]:
+for rel in [
+    "net/fdgames/GameEntities/Final/Player.class",
+    "net/fdgames/GameEntities/Final/NPC.class",
+    "net/fdgames/UI/P.class",
+    "net/fdgames/GameEntities/Character.class"
+]:
     p = "'"$MODS_DIR"'/" + rel
     with open(p, "rb") as f:
         d = bytearray(f.read())

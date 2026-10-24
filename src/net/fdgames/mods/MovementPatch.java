@@ -1,5 +1,6 @@
 package net.fdgames.mods;
 
+import net.fdgames.GameEntities.Character;
 import net.fdgames.GameEntities.MapActor$ActorState;
 import net.fdgames.GameLevel.GameLevel;
 
@@ -21,9 +22,6 @@ public class MovementPatch {
      *   - Esquerda / Direita: exatos 1.60f na tela
      *   - Cima / Baixo: exatos 1.60f na tela
      *   - Diagonais: exatos 1.60f na tela
-     *
-     * Velocidade 100% uniforme e proporcional em 360°, sem correr em disparada
-     * e sem lentidão vertical.
      */
     private static final float C = 0.80f;
 
@@ -46,5 +44,52 @@ public class MovementPatch {
             GameLevel.a().k(C * (f - 2.0f * f2));
             GameLevel.a().l(C * (f + 2.0f * f2));
         }
+    }
+
+    /**
+     * Aplica a compensação isométrica uniforme para todos os NPCs, Companheiros e Inimigos.
+     * Intercepta Character.H() (o motor de movimentação e pathfinding A* do jogo).
+     */
+    public static void updateCharacterMovement(Character c) {
+        if (c == null || c.al() == null || c.al().x == -1 || c.al().y == -1) {
+            return;
+        }
+
+        if (c.n()) {
+            c.k(0.0f);
+            c.l(0.0f);
+            return;
+        }
+
+        float dx = (float) (c.al().x - c.x);
+        float dy = (float) (c.al().y - c.y);
+
+        if (dx == 0.0f && dy == 0.0f) {
+            c.k(0.0f);
+            c.l(0.0f);
+            return;
+        }
+
+        // Vetor de deslocamento na tela isométrica:
+        // ScreenX = dx + dy
+        // ScreenY = (dy - dx) / 2.0f
+        float screenX = dx + dy;
+        float screenY = (dy - dx) / 2.0f;
+
+        float len = (float) Math.sqrt(screenX * screenX + screenY * screenY);
+        if (len <= 0.0001f) {
+            c.k(0.0f);
+            c.l(0.0f);
+            return;
+        }
+
+        float f = screenX / len;
+        float f2 = screenY / len;
+
+        // Aplica a mesma calibração isométrica do jogador (C = 0.80f),
+        // escalada pelo speedModifier original do monstro/NPC/companheiro
+        float mod = c.speedModifier;
+        c.k(C * (f - 2.0f * f2) * mod);
+        c.l(C * (f + 2.0f * f2) * mod);
     }
 }

@@ -57,12 +57,13 @@ Todos os **432 itens equipáveis** do jogo foram auditados um a um:
 
 ---
 
-### E. Correção Crítica de Física: Movimentação Isométrica Uniforme 360°
-No jogo original, o criador cometeu um erro matemático clássico de projeção isométrica 2:1 (`ScreenX = x + y`, `ScreenY = (y - x) / 2`). Ao repassar os comandos direcionais do teclado/controle com peso 1:1 no método `net.fdgames.UI.P.a(f, f2)`, a velocidade vertical (cima/baixo) ficava com apenas **50% da velocidade horizontal** (esquerda/direita).
+### E. Correção Crítica de Física: Movimentação Isométrica Uniforme 360° (Jogador e NPCs/Inimigos)
+No jogo original, o criador cometeu um erro matemático clássico de projeção isométrica 2:1 (`ScreenX = x + y`, `ScreenY = (y - x) / 2`). Ao repassar os comandos direcionais do teclado/controle e os passos de pathfinding da IA com peso 1:1, a velocidade vertical (cima/baixo) ficava com apenas **50% da velocidade horizontal** (esquerda/direita) tanto para o jogador quanto para todos os inimigos e companheiros.
 - **Implementado [`MovementPatch.java`](file:///home/yhn/Projetos/exiled-kingdoms-mod/src/net/fdgames/mods/MovementPatch.java)**:
-  * Injetada compensação de 2.0x no eixo vertical (`k(f - 2.0f * f2)`, `l(f + 2.0f * f2)`).
-  * Adicionada normalização vetorial Euclidiana ($\sqrt{x^2 + y^2}$) para garantir velocidade rigorosamente constante em qualquer ângulo (incluindo diagonais e analógicos de gamepad).
-  * Bytecode do `P.class` interceptado de forma limpa pelo Javassist e sincronizado no jogo.
+  * Injetada compensação de 2.0x no eixo vertical (`k(C * (f - 2.0f * f2))`, `l(C * (f + 2.0f * f2))`) com constante calibrada $C = 0.80f$.
+  * Normalização vetorial Euclidiana ($\sqrt{x^2 + y^2}$) para garantir velocidade rigorosamente homogênea em 360° (horizontal, vertical e diagonais exatos a $1.60$).
+  * **Estendido para Todos os NPCs, Inimigos e Companheiros**: Interceptado `Character.H()` (o motor de pathfinding do jogo), garantindo que monstros em perseguição e companheiros acompanhem o jogador com a mesma física e velocidade balanceada em todos os eixos.
+  * Bytecodes de `P.class` e `Character.class` interceptados via Javassist e sincronizados no jogo.
 
 ---
 
