@@ -13,6 +13,9 @@ O **Exiled Kingdoms Overhaul** é um conjunto de modificações profundas e modu
 * **Armas e Escudos Visíveis em Tempo Real**:
   * Resgate e ativação do sistema cortado de sprites compostos da engine original.
   * Todas as armas (espadas, machados, martelos, adagas, cajados, arcos) e escudos aparecem empunhados pelo personagem e companheiros ao equipar.
+* **Física de Movimentação Isométrica Uniforme 360°**:
+  * Correção do bug nativo de proporção 2:1 da engine que deixava a movimentação vertical (cima/baixo) 50% mais lenta que a horizontal.
+  * Normalização vetorial Euclidiana para velocidade homogênea em todas as direções (teclado, gamepad e analógicos).
 * **Fim das Armaduras Genéricas (40 Novos Spritesheets)**:
   * 40 novas folhas de texturas compostas em alta definição ($1260 \times 1540$ RGBA), corrigindo armaduras, capas, elmos e escudos que usavam gráficos cinzas genéricos no jogo original (Tolassiana Vermelha, Gelo Ancestral Azul, Malha da Floresta, Placas da Legião Douradas, Obsidiana Negra, Placas Thuramianas/Myrosianas Nobres, Couro de Troll Verde, Capuzes Mágicos Coloridos).
 * **Auditoria Completa de Equipamentos (`items.txt`)**:

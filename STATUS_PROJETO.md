@@ -57,7 +57,16 @@ Todos os **432 itens equipáveis** do jogo foram auditados um a um:
 
 ---
 
-### E. Documentação Técnica Existente
+### E. Correção Crítica de Física: Movimentação Isométrica Uniforme 360°
+No jogo original, o criador cometeu um erro matemático clássico de projeção isométrica 2:1 (`ScreenX = x + y`, `ScreenY = (y - x) / 2`). Ao repassar os comandos direcionais do teclado/controle com peso 1:1 no método `net.fdgames.UI.P.a(f, f2)`, a velocidade vertical (cima/baixo) ficava com apenas **50% da velocidade horizontal** (esquerda/direita).
+- **Implementado [`MovementPatch.java`](file:///home/yhn/Projetos/exiled-kingdoms-mod/src/net/fdgames/mods/MovementPatch.java)**:
+  * Injetada compensação de 2.0x no eixo vertical (`k(f - 2.0f * f2)`, `l(f + 2.0f * f2)`).
+  * Adicionada normalização vetorial Euclidiana ($\sqrt{x^2 + y^2}$) para garantir velocidade rigorosamente constante em qualquer ângulo (incluindo diagonais e analógicos de gamepad).
+  * Bytecode do `P.class` interceptado de forma limpa pelo Javassist e sincronizado no jogo.
+
+---
+
+### F. Documentação Técnica Existente
 - [`GUIA_MESTRE_MODDING_EXILED_KINGDOMS.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/GUIA_MESTRE_MODDING_EXILED_KINGDOMS.md): Relatório com engenharia reversa completa do motor LibGDX, guias de injeção de código, estruturas de mapa TMX, eventos, UI e teorias de câmera e mapa contínuo.
 
 ---
