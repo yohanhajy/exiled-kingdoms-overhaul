@@ -1,0 +1,14 @@
+# Bytecode compilado e arquivos gerados pelo build
+*.class
+
+# Código original descompilado (preservação de direitos autorais)
+decompiled/
+
+# Arquivos de rascunho e testes temporários
+scratch/
+
+# Backups, logs e saves do jogo
+*.bak
+*.sav
+*.log
+.DS_Store

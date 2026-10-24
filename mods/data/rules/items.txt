@@ -1,0 +1,725 @@
+item_ID	name	type	weaponstats	armor	resistances	traitBonus	attributes	value	icon	hp	mana	damage_bonus	damage_bonus_type	proc_type	proc_chance	proc_level	sprite	OnTake	OnTakeConditions	OnUse	Manacost	Requisites	Classes	stack
+100	Leather Cuirass	armor_chest		1				100	armor_leather_chest1	3	0						leather							
+101	Leather Leggings	armor_legs		1				80	armor_leather_legs1	3	0													
+102	Leather Bracers	armor_arms		0				30	armor_leather_hands1	2	0													
+103	Leather Boots	armor_feet		1				75	armor_leather_feet1	0	0													
+104	Leather Cap	armor_head		0				25	armor_leather_head1	2	0						leather							
+105	Hardened Leather Cuirass	armor_chest		2				300	armor_leather_chest2	5	0						leather						W,R,C	
+106	Hardened Leather Leggings	armor_legs		1				250	armor_leather_legs2	7	0												W,R,C	
+107	Hardened Leather Gauntlets	armor_arms		1				110	armor_leather_hands2	2	0												W,R,C	
+108	Hardened Leather Boots	armor_feet		1				160	armor_leather_feet2	3	0												W,R,C	
+109	Hardened Leather Cap	armor_head		0				100	armor_leather_head2	4	0						leather						W,R,C	
+110	Chainmail Shirt	armor_chest		2				750	armor_chain_chest	11	0						mail						W,C	
+111	Chainmail Leggings	armor_legs		2				700	armor_chain_legs	8	0												W,C	
+112	Chainmail Gauntlets	armor_arms		2				650	armor_chain_hands	5	0												W,C	
+113	Chainmail Boots	armor_feet		2				800	armor_chain_feet	5	0												W,C	
+114	Chainmail Coif	armor_head		1				700	armor_chain_head	4	0						chain						W,C	
+115	Platemail Vest	armor_chest		3				2300	armor_plate_chest	15	0						plate						W	
+116	Platemail Leggings	armor_legs		3				2000	armor_plate_legs	13	0												W	
+117	Platemail Gauntlets	armor_arms		2				1600	armor_plate_hands	8	0												W	
+118	Platemail Boots	armor_feet		3				1800	armor_plate_feet	5	0												W	
+119	Knight Helm	armor_head		2				1700	armor_plate_head	4	0						plate						W	
+120	Buckler	SHIELD		1			[shield]	100	armor_buckler	3	0						buckler							
+121	Iron Shield	SHIELD		2			[shield]	800	armor_shield_round	5	0						shield2						W,C	
+122	Forest Chain Shirt	armor_chest		2				1100	armor_chain_chest_g	6	0						mail_forest						W,R	
+123	Forest Chain Leggings	armor_legs		2				1000	armor_chain_legs_g	6	0												W,R	
+124	Forest Chain Gauntlets	armor_arms		2				900	armor_chain_hands_g	2	0												W,R	
+125	Forest Chain Boots	armor_feet		1				800	armor_chain_feet_g	6	0												W,R	
+126	Forest Chain Coif	armor_head		1				950	armor_chain_head_g	4	0						chain_forest						W,R	
+127	Blessed Chain Shirt	armor_chest		2				1400	armor_chain_chest_b	6	3						mail_blue						C	
+128	Blessed Chain Leggings	armor_legs		2				1700	armor_chain_legs_b	6	2												C	
+129	Blessed Chain Gauntlets	armor_arms		2				1300	armor_chain_hands_b	2	2												C	
+130	Blessed Chain Boots	armor_feet		1				1200	armor_chain_feet_b	6	1												C	
+131	Blessed Chain Coif	armor_head		1			[wisdom,1]	2000	armor_chain_head_b	4	2						chain_blue						C	
+132	Trollskin Cuirass	armor_chest		2	0,0,0,0,40,0			2400	armor_leather_chest_green	5	0						leather_green							
+133	Trollskin Leggings	armor_legs		2	0,0,0,0,40,0			2300	armor_leather_legs_green	5	0													
+134	Trollskin Gauntlets	armor_arms		1	0,0,0,0,40,0			1500	armor_leather_hands_green	2	0													
+135	Trollskin Boots	armor_feet		1	0,0,0,0,40,0			1500	armor_leather_feet_green	2	0													
+136	Trollskin Cap	armor_head		1	0,0,0,0,40,0			1500	armor_leather_head_green	2	0						leather_green							
+137	Tolassian Chain Shirt	armor_chest		3	0,0,0,10,0,0			2000	armor_chain_chest_red	7	0						mail_red						W,R,C	
+138	Tolassian Chain Leggings	armor_legs		2	0,0,0,9,0,0			1600	armor_chain_legs_red	8	0												W,R,C	
+139	Tolassian Chain Gauntlets	armor_arms		2	0,0,0,8,0,0			1200	armor_chain_hands_red	6	0												W,R,C	
+140	Tolassian Chain Boots	armor_feet		2	0,0,0,6,0,0			1000	armor_chain_feet_red	4	0												W,R,C	
+141	Tolassian Chain Coif	armor_head		2	0,0,0,5,0,0			1100	armor_chain_head_red	4	0						chain_red						W,R,C	
+142	Blessed Platemail Vest	armor_chest		3				8600	armor_plate_chest_blue	9	4						plate_blue						C	
+143	Blessed Platemail Leggings	armor_legs		3				7500	armor_plate_legs_blue	6	4												C	
+144	Blessed Platemail Gauntlets	armor_arms		2				4900	armor_plate_hands_blue	8	3												C	
+145	Blessed Platemail Boots	armor_feet		2				4600	armor_plate_feet_blue	6	2												C	
+146	Assassin's Cuirass	armor_chest		4	6,0,0,0,6,0			1700	armor_leather_chest2	6	0						leather						R	
+147	Assassin's Leggings	armor_legs		3	0,6,0,0,6,0			1500	armor_leather_legs2	6	0												R	
+148	Assassin's Gauntlets	armor_arms		2	3,0,0,0,5,0		[tinkering,2]	1100	armor_leather_hands2	6	0												R	
+149	Assassin's Boots	armor_feet		2	0,5,0,0,5,0			1200	armor_leather_feet2	5	0												R	
+150	Assassin's Hood	armor_head		2	0,0,0,0,5,0		[gossip,1]	1200	armor_leather_head2	6	0						hood						R	
+151	Legion Breastplate	armor_chest		4	7,7,0,0,0,0			11000	armor_plate_chest_yellow	9	0						plate_gold						W	
+152	Legion Leggings	armor_legs		4	5,5,0,0,0,0			8900	armor_plate_legs_yellow	7	0												W	
+153	Legion Gauntlets	armor_arms		3	4,4,0,0,0,0			6000	armor_plate_hands_yellow	4	0												W	
+154	Legion Boots	armor_feet		4	4,4,0,0,0,0			6500	armor_plate_feet_yellow	2	0												W	
+155	Legion Helm	armor_head		3	4,4,0,0,0,0			7000	armor_plate_head_yellow	3	0						plate_gold						W	
+156	Velites Chain Shirt	armor_chest		3				4200	armor_chain_chest_g	11	0						mail_forest						W,R	
+157	Velites Chain Leggings	armor_legs		2				3900	armor_chain_legs_g	11	0												W,R	
+158	Velites Chain Gauntlets	armor_arms		2				2200	armor_chain_hands_g	8	0												W,R	
+159	Velites Chain Boots	armor_feet		2				2500	armor_chain_feet_g	6	0												W,R	
+160	Velites Chain Coif	armor_head		2				2100	armor_chain_head_g	6	0						chain_forest						W,R	
+161	Blessed Platemail Helm	armor_head		2			[wisdom,1]	4600	armor_plate_head_blue	5	3						plate_blue						C	
+162	Myrosian Breastplate	armor_chest		5	0,0,16,0,0,4			16000	armor_plate_chest_epic	15	0						plate_epic						W	
+163	Primal Ice Chain Shirt	armor_chest		4	"""-12,12,0,0,0,0"""			2000	armor_chain_chest_b	6	0						mail_blue						W,R,C	
+164	Primal Ice Chain Leggings	armor_legs		3	"""-10,10,0,0,0,0"""			1600	armor_chain_legs_b	6	0												W,R,C	
+165	Primal Ice Chain Gauntlets	armor_arms		3	"""-10,6,0,0,0,0"""			1200	armor_chain_hands_b	4	0												W,R,C	
+166	Primal Ice Chain Boots	armor_feet		3	"""-10,6,0,0,0,0"""			1000	armor_chain_feet_b	3	0												W,R,C	
+167	Primal Ice Chain Coif	armor_head		3	"""-10,6,0,0,0,0"""			1100	armor_chain_head_b	3	0						chain_blue						W,R,C	
+168	Myrosian Gauntlets	armor_arms		3	0,0,7,0,0,2			6000	armor_plate_hands_epic	9	0												W	
+169	Myrosian Leggings	armor_legs		5	0,0,9,0,0,4			13000	armor_plate_legs_epic	13	0												W	
+170	Myrosian Boots	armor_feet		4	0,0,5,0,0,5			6000	armor_plate_feet_epic	8	0												W	
+171	Myrosian Helm	armor_head		4	0,0,7,0,0,2			6000	armor_plate_head_epic	9	0						plate_epic						W	
+172	Traitor's Chain Shirt	armor_chest		4	"""-5,0,0,0,0,-5"""			2000	armor_chain_chest_b	6	0						mail_blue						W,R,C	
+173	Traitor's Chain Leggings	armor_legs		3	"""-5,0,0,0,0,-5"""			1600	armor_chain_legs_b	6	0												W,R,C	
+174	Traitor's Chain Gauntlets	armor_arms		3	"""0,0,0,0,0,-5"""			1200	armor_chain_hands_b	4	0												W,R,C	
+175	Traitor's Chain Boots	armor_feet		3	"""0,0,0,0,0,-5"""			1000	armor_chain_feet_b	3	0												W,R,C	
+176	Traitor's Chain Coif	armor_head		3	"""0,0,0,0,0,-5"""			1100	armor_chain_head_b	3	0						chain_blue						W,R,C	
+177	Leggings of Shadows	armor_legs		4	15,0,15,0,0,0			1600	armor_chain_legs	9	0												W,R,C	
+180	Shield of the Forge	SHIELD		2	9,0,0,0,0,0		[shield]	1200	armor_shield_round	4	0						shield2						W,C	
+181	Shield of the Storm	SHIELD		2	0,0,13,0,0,0		[shield]	1200	armor_shield_round2	4	0						shield2						W,C	
+182	Charred Buckler	SHIELD		1	8,0,0,0,0,0		[shield]	500	armor_buckler_red	8	0						buckler_red							
+183	Lesser Shield of Life	SHIELD		2	0,0,0,9,0,0		[shield]	500	armor_shield	0	0						shield						W,C	
+184	Steel Shield	SHIELD		3			[shield]	1300	armor_shield	7	0						shield						W	
+185	Hero's Shield	SHIELD		3			[gossip,2][shield]	3000	armor_shield	8	0						shield						W,C	
+186	Petrified Wood Buckler	SHIELD		2	12,0,0,12,0,0		[shield]	3000	armor_buckler	8	0						buckler							
+187	Shield of Life	SHIELD		3	0,0,0,9,0,10		[shield]	4000	armor_shield	0	0						shield						W,C	
+188	Red Leather Buckler	SHIELD		2	20,0,0,0,0,0		[shield]	1500	armor_buckler_red	8	0						buckler_red							
+189	Red Leather Shield	SHIELD		3	20,0,0,0,0,0		[shield]	1800	armor_shield_round3	11	0						shield2_red						W,C	
+190	Large Chitin Shield	SHIELD		3	0,0,0,0,9,18		[shield]	4400	armor_shield_scales	0	0						shield2						W,C,R	
+191	Scutum	SHIELD		4			[shield]	3000	armor_shield	10	0						shield						W	
+192	Chitin Shield	SHIELD		2	0,0,0,0,5,18		[shield]	4400	armor_shield_scales	0	0						shield2						W,C,R	
+193	Anointed Shield	SHIELD		2	0,0,0,0,0,10		[shield]	1500	armor_shield	6	0						shield						W,C	
+194	Infernal Aegis	SHIELD		4	20,0,0,0,0,0		[shield]	5000	armor_shield	12	0						shield						W	
+195	Sailor Buckler	SHIELD		2	0,10,0,0,0,0		[shield]	1500	buckler_steel	7	0						buckler							
+196	Shield of the Dragon Hunter	SHIELD		5	25,25,0,0,0,0		[shield][gossip,2]	5000	armor_shield	12	0						shield						W	
+197	Wisdom of the Seas	SHIELD		3	0,25,0,0,0,0	0,0,0,1,0,0	[shield][wisdom,2]	5000	buckler_steel	12	0						buckler							
+198	Enchanted Scutum	SHIELD		5			[shield]	5000	armor_shield	14	0						shield						W,C	
+201	Goblin Flesh-Cutter	WEAPON	goblin_fleshcutter	0				25	weapon_dagger4	0	0						dagger						R	
+202	Goblin Lizardskin Boots	armor_feet		0	20,0,0,0,0,0			70	armor_boots_fire	3	0													
+203	Thief's Blade	WEAPON	thief_blade	0				300	weapon_dagger3	0	0						shortsword						R	
+204	Sharp Orc Knife	WEAPON	orc_knife	0			[vicious,1]	180	weapon_dagger3	0	0						dagger						R	
+205	Bone Shiv	WEAPON	iron_dagger	0				20	weapon_dagger4	0	0						dagger						R	
+206	Varaol's Boots	armor_feet		2	0,6,6,0,0,0			4000	armor_plate_feet	0	0												W,C	
+207	Lionskin Cuirass	armor_chest		3	10,0,0,0,0,0			3000	armor_leather_chest2	6	0						leather							
+208	Mystic Vest	armor_chest		1	0,0,15,0,0,0			1500	armor_leather_chest1	5	4						leather						C,M	
+209	Breastplate of the Forge	armor_chest		3	20,0,0,0,0,0			9000	armor_plate_chest	15	0						plate						W	
+210	Cowl of Fellowship	armor_head		1			[gossip,1]	600	armor_leather_head3	4	0						hood						W,R,C	
+211	Troll Cleaver	WEAPON	tier4_shortsword_toxic	0			[vicious,1]	500	weapon_cleaver	0	0						dagger						R	
+212	Heroic Helm	armor_head		3	5,5,5,0,0,0			7000	armor_plate_head	7	0						plate						W,C	
+213	Lionskin Leggings	armor_legs		3	0,0,10,0,0,0			2700	armor_leather_legs2	4	0													
+214	Boots of Balance	armor_feet		1			[stability]	2400	armor_chain_feet_g	5	0													
+215	Ironfoot Boots	armor_feet		3	12,0,0,0,0,8		[stability]	5000	armor_plate_feet_magic	0	0													
+216	Sharkskin Boots	armor_feet		2	0,9,0,0,0,6			1000	armor_chain_feet_b	4	0													
+217	Ruined Dragoon Boots	armor_feet		2	30,0,0,0,0,0			1000	armor_leather_feet_red	4	0													
+218	The Undermother's Hide	armor_chest		5	0,0,0,10,0,10			10000	carapace2	10	0						leather							
+219	Anointed Cuirass	armor_chest		1	0,0,0,25,0,0			500	armor_leather_chest1	5	0						leather						W,R,C	
+220	Jungle Boots	armor_feet		2	0,0,0,0,25,0			1900	armor_leather_feet_green	7	0													
+221	Holy Helm	armor_head		2	0,0,20,0,0,0		[wisdom,1]	4600	armor_plate_head_blue	8	8						plate_blue						C	
+222	Centurion Helm	armor_head		3	0,0,12,0,0,5	0,0,0,0,0,1		7000	armor_plate_head_yellow	6	0						plate_gold						W,C	
+232	Thuramiam Breastplate	armor_chest		4	0,20,0,0,0,5			10000	armor_plate_chest_epic	10	10						plate_epic						W,C,M	
+233	Thuramiam Plate Gauntlets	armor_arms		3	0,6,0,0,0,3			7000	armor_plate_hands_epic	2	2												W,C,M	
+234	Thuramiam Plate Leggings	armor_legs		3	0,12,0,0,0,5			9000	armor_plate_legs_epic	6	6												W,C,M	
+235	Thuramiam Plate Boots	armor_feet		2	0,5,0,0,0,2			4000	armor_plate_feet_epic	5	5												W,C,M	
+236	Thuramiam Plate Helm	armor_head		2	0,7,0,0,0,5			4000	armor_plate_head_epic	4	4						plate_epic						W,C,M	
+240	Gladiator Shield	SHIELD		2			[shield]	10	armor_shield_round	5	0						shield2						W,C	
+241	Gladiator Cuirass	armor_chest		1				10	armor_leather_chest1	3	0						leather							
+242	Gladiator Buckler	SHIELD		1			[shield]	10	armor_buckler	3	0						buckler							
+243	Gladiator  Chainmail Shirt	armor_chest		2				10	armor_chain_chest	11	0						mail						W,C	
+244	Gladiator  Hardened Leather Cap	armor_head		0				10	armor_leather_head2	4	0						leather						W,R,C	
+245	Gladiator  Leather Boots	armor_feet		1				10	armor_leather_feet1	0	0													
+246	Gladiator Leather Leggings	armor_legs		1				10	armor_leather_legs1	3	0													
+250	Ashen Chestplate	armor_chest		6	20,0,0,0,0,8			20000	armor_plate_chest_black	15	9						plate_black						W,C	
+251	Ashen Gauntlets	armor_arms		3	0,0,15,0,0,4			6000	armor_plate_hands_black	9	6												W,C	
+252	Ashen Leggings	armor_legs		5	0,0,11,0,0,4			13000	armor_plate_legs_black	13	5												W,C	
+253	Ashen Boots	armor_feet		4	0,0,9,0,0,5		[stability]	6000	armor_plate_feet_black	8	4												W,C	
+254	Ashen Helm	armor_head		4	0,0,10,0,0,10		[wisdom,1]	6000	armor_plate_head_black	9	5						plate_black						W,C	
+255	Laminated Vest	armor_chest		7	10,0,20,0,0,0		[stability]	4600	vest3	16	0						plate						W	
+256	Kevlar Vest	armor_chest		6	10,0,20,0,0,0			3000	vest2	12	0						mail						W,R,C	
+257	Conductive Vest	armor_chest		7	0,0,20,0,0,10		[stunimmunity]	3000	vest1	10	30						plate						C	
+258	Goggled Helmet	armor_head		3	0,0,0,9,9,0	0,0,0,0,2,0	[detection,2][rad]	2000	helm1	0	0						chain							
+259	Strange Hood	armor_head		2			[rad]	2000	hood_rad	0	0						hood							
+260	Plexifiber Robes	armor_chest		4	0,0,20,0,0,10		[stability]	3000	robe_ark	10	45						tunic						M	
+261	Hunter's Leggings	armor_legs		3	8,8,0,0,0,0			3000	armor_leather_legs_green	8	0												W,R,C	
+262	Jeweled Breastplate	armor_chest		4	15,0,0,0,0,10			30000	armor_plate_chest_epic	15	15						plate_epic						W,C	
+263	Hunter's Armor	armor_chest		4	0,0,10,0,0,0			7000	armor_leather_chest_green	20	0						leather_green						W,R,C	
+300	Apprentice Tunic	armor_chest		1				140	robe1_brown	2	4						tunic						C,M	
+301	Apprentice Pants	armor_legs		0				110	armor_leather_legs_green	2	3												C,M	
+302	Apprentice Hood	armor_head		0				25	armor_leather_head_green	0	2						hood_green						C,M	
+303	Apprentice Gloves	armor_arms		0				110	armor_leather_hands_green	1	2												C,M	
+304	Apprentice Boots	armor_feet		0				160	armor_leather_feet_green	1	2												C,M	
+305	Journeyman Tunic	armor_chest		1				400	robe1_blue	5	7						tunic_blue						C,M	
+306	Journeyman Pants	armor_legs		1				380	armor_leather_legs_blue	3	4												C,M	
+307	Journeyman Gloves	armor_arms		0				230	armor_blue_gloves	2	4												C,M	
+308	Journeyman Boots	armor_feet		1				200	armor_leather_feet_blue	1	3												C,M	
+309	Journeyman Cap	armor_head		0				220	armor_leather_head_blue	0	4						hood_blue						C,M	
+310	Conjurer Gloves	armor_arms		1				230	armor_blue_gloves	2	5												C,M	
+311	Conjurer Boots	armor_feet		1				200	armor_leather_feet_blue	4	6												C,M	
+312	Conjurer Hood	armor_head		1			[detection,1]	220	armor_leather_head_blue	2	5						hood_blue						C,M	
+313	Conjurer Pantaloons	armor_legs		2	0,0,5,0,0,0			700	armor_leather_legs_blue	3	5												C,M	
+314	Conjurer Tunic	armor_chest		2	5,5,0,0,0,0			800	robe1_blue	5	9						tunic_blue						C,M	
+320	Firedancer Robes	armor_chest		1	16,0,0,0,0,0			600	robe1_red	2	8						tunic_red						M	
+321	Primzar's Tunic	armor_chest		2	0,0,0,0,0,15			4000	robe2_blue	8	12						tunic_blue						M	
+322	Toga of the Theurgist	armor_chest		2	0,0,0,9,0,9			1000	robe1_purple	0	12						tunic_purple						M	
+323	Forest Robes	armor_chest		1	0,10,0,0,10,0			600	robe1_green	6	6						tunic_green						M	
+324	Arcane Leather Boots	armor_feet		1				800	armor_leather_feet_blue	4	3												M	
+325	Arcane Leather Doublet	armor_chest		3	0,0,0,0,0,5			1800	armor_leather_chest1	4	4						leather						M	
+326	Nature's Robes	armor_chest		1	0,0,0,0,10,0			300	robe1_brown	3	6						tunic						C,M	
+327	Shaman Boots	armor_feet		2	20,0,0,0,0,0			800	armor_boots_fire	0	4												C,M	
+328	Caretaker Tunic	armor_chest		2	0,0,0,0,0,15			1000	robe1_purple	5	10						tunic_purple						M	
+329	Mystic Sandals	armor_feet		1	0,0,0,0,12,0			800	sandals	2	6												C,M	
+330	Sandals of the Saint	armor_feet		2	0,0,0,15,0,15			800	sandals2	0	12												C,M	
+331	Witch's Robes	armor_chest		2				1000	robe1_purple	5	10						tunic_purple						M	
+332	High Mage Robes	armor_chest		3	10,0,0,0,0,0			1300	robe2_red	6	15						tunic_red						M	
+333	Sorceress' Sandals	armor_feet		2	0,0,0,0,12,0			1000	sandals	5	9												C,M	
+334	Tunic of the Lightning Priest	armor_chest		3	0,0,20,0,0,10			4000	robe2_blue	0	20						tunic_blue						C,M	
+335	Black Silk Leggings	armor_legs		3	10,0,10,0,0,0			1600	armor_chain_legs	0	12												C,M	
+336	Breeches of the Mad Wizard	armor_legs		2	0,0,10,0,0,0			1600	armor_leather_legs_green	0	8												C,M	
+337	Ragged Mittens	armor_arms		1	0,16,16,0,0,0			3000	mittens	4	8												C,M	
+338	Gloves of the Archmage	armor_arms		2	13,0,0,0,0,13		[wisdom,1]	5000	mittens_blue	0	13												C,M	
+339	Hood of the Hermit	armor_head		2	10,0,10,0,0,0		[detection,1][wisdom,1]	8000	armor_leather_head3	5	12						hood						C,M	
+340	Explorer Gauntlets	armor_arms		3	0,0,10,0,0,0	0,0,1,0,0,0	[tinkering,2]	3000	armor_leather_hands2	8	0												W,R	
+341	Robe of the White Mage	armor_chest		2	0,12,0,0,0,12			1500	robe_white	8	12						tunic_white						M	
+360	Scepter of the Underworld	WEAPON	wand_death_4	0			[wand][arcane,4]	4500	staff5	0	0						rod						M	
+361	Wand of the Arcanist	WEAPON	wand_arcanist	0			[wand][arcane,3]	9000	wand10	0	0						rod						M	
+362	Staff of the Arcanist	WEAPON	staff_arcanist	0			[staff][arcane,3]	9000	wand11	0	0						greatstaff						M	
+363	Branch of the Holy Tree	WEAPON	wand_spirit_3	0			[wand][arcane,1][banishing,3]	3000	wand10	0	0						wand						M	
+364	Staff of the Traveller	WEAPON	staff_shock_4	0			[staff][arcane,2][banishing,4]	3000	greatstaff_blue	0	0						greatstaff						M	
+365	Staff of Impact	WEAPON	staff_impact	0			[staff][arcane,5][stun,1]	10000	greatstaff_green	0	0						greatstaff						M	
+366	Staff of the Dead Kings	WEAPON	staff_death_5	0			[staff][arcane,5]	10000	greatstaff_death	0	0						greatstaff						M	
+367	Wand of Power	WEAPON	wand_power	0			[wand][arcane,5][stun,1]	8000	wand5	0	0						rod						M	
+368	Crystallized Wand	WEAPON	wand_ice_5	0			[wand][arcane,4][banishing,2]	8000	wand6	0	0						rod						M	
+369	Staff of Wonders	WEAPON	staff_spirit_3	0			[staff][arcane,1][banishing,3]	3000	staff3	0	0						greatstaff						M	
+370	Willow Wand	WEAPON	wand_1	0			[wand]	80	wand0	0	0						wand						M	
+371	Oak Wand	WEAPON	wand_2	0			[wand]	600	wand1	0	0						wand						M	
+372	Wand of Scorching	WEAPON	wand_fire_1	0			[wand][arcane,1]	200	wand7	0	0						rod						M	
+373	Icy Wand	WEAPON	wand_ice_2	0			[wand]	200	wand6	0	0						rod						M	
+374	Batrax Wand	WEAPON	wand_ice_2b	0			[wand]	300	wand6	0	0						wand						M	
+375	Acidspitter	WEAPON	wand_toxic_3	0			[wand]	300	acidspitter	0	0						wand						M	
+376	Polarized Staff	WEAPON	staff_shock_3	0			[staff][arcane,1][stun,1]	980	greatstaff_blue	0	0						greatstaff						M	
+380	Staff of Force	WEAPON	staff_1	0			[staff]	140	staff0	0	0						staff						M	
+381	Caduceus of Scorching	WEAPON	staff_fire_1	0			[staff][arcane,1]	1800	staff3	0	0						staff						M	
+382	GreatStaff of Energy	WEAPON	staff_2	0			[staff]	2400	staff1	0	0						staff						M	
+383	Vitriolic Staff	WEAPON	staff_toxic_1	0			[staff]	800	staff2	0	0						staff						M	
+384	Staff of the Seas	WEAPON	staff_ice_2	0			[staff][stun,1][arcane,2]	1500	greatstaff_white	0	0						greatstaff						M	
+385	Wand of Storms	WEAPON	wand_shock_3	0			[wand][stun,2]	1500	wand4	0	0						wand						M	
+386	Tolassian Wand	WEAPON	wand_death_2	0			[wand]	1500	wand3	0	0						rod						M	
+387	Tolassian Greatstaff	WEAPON	staff_death_2	0			[staff][arcane,2]	2500	greatstaff_death	0	0						greatstaff						M	
+388	Staff of Storms	WEAPON	staff_shock_2	0			[staff][stun,1]	2500	staff1	0	0						staff						M	
+389	Imperial Battlemage Wand	WEAPON	wand_fire_3	0			[wand][arcane,1]	1000	wand7	0	0						rod						M	
+390	Rod of Incineration	WEAPON	wand_fire_4	0			[wand][arcane,2]	1400	wand7	0	0						rod						M	
+391	Elm Wand	WEAPON	wand_3	0			[wand]	2400	wand1	0	0						wand						M	
+392	Staff of Mighty Missiles	WEAPON	staff_3	0			[staff]	3600	staff1	0	0						staff						M	
+393	Magma Greatstaff	WEAPON	staff_fire_4	0			[staff][arcane,3]	3000	greatstaff_red	0	0						greatstaff						M	
+394	First Winter	WEAPON	staff_ice_4	0			[staff][arcane,4][banishing,2]	6000	staff6	0	0						greatstaff						M	
+395	Invisible Fist	WEAPON	wand_4	0			[wand]	2200	wand1	0	0						wand						M	
+396	The Corruptor	WEAPON	staff_toxic_4	0			[staff][arcane,3]	6000	staff1	0	0						staff						M	
+398	Tesla Emitter	WEAPON	wand_tesla	0			[wand][arcane,2][emp,2]	6000	tesla_emitter	0	0						rod						M	
+399	Tesla Rod	WEAPON	staff_tesla	0			[staff][arcane,3][emp,3]	6000	tesla_rod	0	0						greatstaff						M	
+400	Dirk	SHIELD		0			[offhand]	180	dirk	0	0	2					sword						W,R	
+401	Main Gauche	SHIELD		1			[offhand]	600	dirk_blue	0	0	2					sword						R	
+402	Lightning Dirk	SHIELD		0			[offhand][stun,1]	1300	dirk_shock	0	0	3	s	stun	5	1	sword						W,R	
+403	Hatchet	SHIELD		0			[offhand]	900	hatchet	0	0	3					axe						W,R	
+404	Toecutter	SHIELD		0			[offhand][slow,1]	1300	hatchet2	0	0	3		slow	6	3	axe						W,R	
+405	Flaming Hatchet	SHIELD		0			[offhand]	900	hatchet_fire	0	0	2	f				axe						W,R	
+406	Bluesteel Dirk	SHIELD		0			[offhand]	1800	dirk_blue	0	0	4					sword						R	
+407	Flaming Dirk	SHIELD		0			[offhand]	1800	dirk_fire	0	0	4	f				sword						R	
+408	Cursed Fang	SHIELD		0			[offhand][stun,1]	1000	fang2	0	0	4	d	stun	5	1	sword						R	
+409	Main Gauche of Shadows	SHIELD		1			[offhand][slow,1]	2000	dirk_dblue	0	0	3	d	slow	6	3	sword						R	
+410	Dirk of the Gambler	SHIELD		1			[offhand][slow,1]	2800	dirk	0	0	5		slow	6	3	sword						R	
+411	Dirk of Betrayal	SHIELD		1			[offhand][stun,1]	4000	dirk	0	0	5		stun	5	1	sword						R	
+412	Tarand's Hatchet	SHIELD		0			[offhand][slow,1]	3500	hatchet_fire	0	0	4	f	slow	6	3	axe						W,R	
+440	Varannari Owl Figurine	SHIELD		0	0,0,0,0,0,0		[detection,1][orb]	200	totem2	10	5												M	
+441	Varannari Turtle Figurine	SHIELD		2	0,0,0,20,0,0		[stability][orb]	1500	totem4	25	0												M	
+442	Varannari Cat Figurine	SHIELD		2	0,0,0,0,0,15		[orb]	1500	totem3	-15	25												M	
+443	Ursan Figurine	SHIELD		1	0,0,0,20,0,0		[detection,3][orb]	1200	totem5	15	0												M	
+450	Lesser Black Orb	SHIELD		0	0,0,0,18,0,0		[detection,1][orb]	500	orb_black	14	5												M	
+451	Lesser Red Orb	SHIELD		0	18,0,0,0,0,0		[detection,1][orb]	500	orb_red	14	5												M	
+452	Lesser White Orb	SHIELD		0	0,18,0,0,0,0		[detection,1][orb]	500	orb_white	14	5												M	
+453	Lesser Green Orb	SHIELD		0	0,0,0,0,18,0		[detection,1][orb]	500	orb_green	14	5												M	
+454	Lesser Blue Orb	SHIELD		0	0,0,18,0,0,0		[detection,1][orb]	500	orb_blue	14	5												M	
+455	Greater Black Orb	SHIELD		1	0,0,0,28,0,0		[detection,2][orb]	960	orb_black	25	9												M	
+456	Greater Red Orb	SHIELD		1	28,0,0,0,0,0		[detection,2][orb]	960	orb_red	25	9												M	
+457	Greater White Orb	SHIELD		1	0,28,0,0,0,0		[detection,2][orb]	960	orb_white	25	9												M	
+458	Greater Green Orb	SHIELD		1	0,0,0,0,28,0		[detection,2][orb]	960	orb_green	25	9												M	
+459	Greater Blue Orb	SHIELD		1	0,0,28,0,0,0		[detection,2][orb]	960	orb_blue	25	9												M	
+460	Pouch of Reagents	SHIELD		0	0,0,0,0,0,15		[wisdom,1][orb]	1500	pouch	0	24												M	
+461	Jester's Skull	SHIELD		2		0,0,0,0,0,1	[wisdom,2][orb]	3000	skull2	15	15												M	
+462	Orb of the High Clouds	SHIELD		1	25,0,35,0,0,0		[detection,3][orb]	2900	orb_cloud	0	10												M	
+463	Totem of Protection	SHIELD		2	0,0,0,0,0,20		[stability][orb]	4000	totem1	20	0													
+501	Iron Dagger	WEAPON	iron_dagger	0				25	weapon_dagger	0	0						dagger							
+502	Iron Shortsword	WEAPON	iron_shortsword	0				35	weapon_shortsword	0	0						shortsword						W,R	
+503	Iron Longsword	WEAPON	iron_longsword	0				50	weapon_longsword	0	0						longsword						W,R	
+504	Iron Greatsword	WEAPON	iron_greatsword	0				60	weapon_greatsword	0	0						zweihander						W	
+505	Iron Mace	WEAPON	iron_mace	0				50	weapon_mace1	0	0						mace						W,C	
+506	Iron Hammer	WEAPON	iron_hammer	0				40	hammer3	0	0						hammer						W,C	
+507	Iron Maul	WEAPON	iron_maul	0				80	maul3	0	0						maul						W,C	
+508	Iron Axe	WEAPON	iron_axe	0				33	axe3	0	0						axe						W,R	
+509	Iron Greataxe	WEAPON	iron_greataxe	0				55	battleaxe3	0	0						battleaxe						W	
+521	Steel Dagger	WEAPON	steel_dagger	0				250	weapon_dagger1	0	0						dagger							
+522	Steel Shortsword	WEAPON	steel_shortsword	0				350	weapon_shortsword1	0	0						shortsword						W,R	
+523	Steel Longsword	WEAPON	steel_longsword	0				500	weapon_longsword1	0	0						longsword						W,R	
+524	Steel Greatsword	WEAPON	steel_greatsword	0				600	weapon_greatsword1	0	0						zweihander						W	
+525	Steel Mace	WEAPON	steel_mace	0				400	weapon_mace2	0	0						mace						W,C	
+526	Steel Hammer	WEAPON	steel_hammer	0				350	hammer1	0	0						hammer						W,C	
+527	Steel Maul	WEAPON	steel_maul	0				700	maul1	0	0						maul						W,C	
+528	Steel Axe	WEAPON	steel_axe	0				360	axe1	0	0						axe						W,R	
+529	Steel Greataxe	WEAPON	steel_greataxe	0				550	battleaxe1	0	0						battleaxe						W	
+531	Bluesteel Dagger	WEAPON	bluesteel_dagger	0				1000	weapon_dagger2	0	0						dagger							
+532	Bluesteel Shortsword	WEAPON	bluesteel_shortsword	0				1400	weapon_shortsword2	0	0						shortsword						W,R	
+533	Bluesteel Longsword	WEAPON	bluesteel_longsword	0				1600	weapon_longsword2	0	0						longsword						W,R	
+534	Bluesteel Greatsword	WEAPON	bluesteel_greatsword	0				2100	weapon_greatsword2	0	0						zweihander						W	
+535	Bluesteel Mace	WEAPON	bluesteel_mace	0				1400	weapon_mace_blue	0	0						mace						W,C	
+536	Bluesteel Hammer	WEAPON	bluesteel_hammer	0				1300	hammer2	0	0						hammer						W,C	
+537	Bluesteel Maul	WEAPON	bluesteel_maul	0				2200	maul2	0	0						maul						W,C	
+538	Bluesteel Axe	WEAPON	bluesteel_axe	0				1300	axe2	0	0						axe						W,R	
+539	Bluesteel Greataxe	WEAPON	bluesteel_greataxe	0				1700	battleaxe2	0	0						battleaxe						W	
+540	Bonegrinder	WEAPON	war_maul	0				3600	hammer1	0	0						hammer						W,C	
+541	Gurgurth's Maul	WEAPON	war_maul_heavy	0			[stun,1]	5000	maul	0	0						maul						W,C	
+552	Adamantite Shortsword	WEAPON	adamantite_shortsword	0			[banishing,3]	8000	weapon_shortsword2	0	0						shortsword						W,R	
+553	Adamantite Longsword	WEAPON	adamantite_longsword	0			[banishing,4]	8000	weapon_longsword2	0	0						longsword						W,R	
+554	Adamantite Greatsword	WEAPON	adamantite_greatsword	0			[banishing,5]	12000	zweihander2	0	0						zweihander						W	
+571	Vulcan Dagger	WEAPON	fiery_dagger	0				500	weapon_dagger5	0	0						dagger							
+572	Shock Dagger	WEAPON	shock_dagger	0				500	weapon_dagger_shock	0	0						dagger							
+573	Dagger of Corrosion	WEAPON	toxic_dagger	0				500	weapon_dagger_toxic	0	0						dagger							
+574	Dagger of Ice	WEAPON	ice_dagger	0				500	weapon_dagger_ice	0	0						dagger							
+575	Dagger of Poison	WEAPON	toxic_dagger	0				500	weapon_dagger_toxic	0	0						dagger						W,R,C	
+576	Bluesteel Poisonous Dagger	WEAPON	bluesteel_dagger_poison	0				5000	weapon_dagger_toxic	0	0						dagger						R	
+577	Deathclaw	WEAPON	deathclaw_dagger	0				2000	weapon_dagger3	0	0						shortsword						W,R	
+578	Hunter's Fang	WEAPON	steel_shortsword	0			[beastslayer,1]	450	weapon_shortsword1	0	0						dagger						W,R,C	
+579	Beastgrinder	WEAPON	bluesteel_mace	0			[beastslayer,2]	3000	weapon_mace_blue	0	0						mace						W,C	
+580	Sword of Shock	WEAPON	sword_shock	0				2500	weapon_longsword_shock	0	0						longsword						W,R	
+581	Icy Greatsword	WEAPON	greatsword_ice	0				2800	weapon_greatsword_ice	0	0						zweihander						W	
+582	Shortsword of Frost	WEAPON	ice_shortsword	0				800	weapon_shortsword_ice	0	0						shortsword						W,R	
+583	Sword of Flames	WEAPON	sword_flaming	0				3000	weapon_sword_long_flaming	0	0						longsword						W,R	
+584	Winter Stone	WEAPON	ice_mace	0				1250	weapon_mace_white	0	0						mace						W,C	
+585	Crushing Ember	WEAPON	fire_mace	0				1250	weapon_mace_red	0	0						mace						W,C	
+586	Silvery Mace	WEAPON	steel_mace	0			[holy,1] [silver][banishing,2]	500	weapon_mace_white	0	0						mace	SetVariable#initiates_end,20	VariableEqual#initiates_end,10				W,C	
+587	Magma Shortsword	WEAPON	magma_shortsword	0				7000	weapon_shortsword_fire	0	0						shortsword						W,R	
+588	Sir Mason's Longsword	WEAPON	bluesteel_longsword	0				-1	weapon_longsword2	0	0						longsword	SetVariable#where_put_sword,50	VariableEqual#where_put_sword,20				W,R	
+589	Orcslicer	WEAPON	steel_longsword	0			[orcslayer,2]	2300	weapon_sword_long_magic2	0	0						longsword						W,R	
+590	Cruelty	WEAPON	greatsword_cruelty	0			[vicious,1]	5000	weapon_greatsword	0	0						greatsword						W	
+591	Thunder	WEAPON	hammer_shock	0			[banishing,2]	2800	hammer1	0	0						hammer						W,C	
+592	Blood Thunder	WEAPON	hammer_shock	0			[orcslayer,2][banishing,2]	4000	hammer3	0	0						hammer						W,C	
+593	Magma Longsword	WEAPON	sword_flaming_2	0				5000	weapon_sword_long_flaming	0	0						longsword						W,R	
+594	Righteousness	WEAPON	righteousness	0			[holy,2][banishing,3]	6000	weapon_sword_long_magic	0	0						longsword						W,R,C	
+595	Vulcan Maul	WEAPON	maul_fire	0				1000	maul3	0	0						maul						W,C	
+596	Icy Maul	WEAPON	maul_ice	0				1200	maul2	0	0						maul						W,C	
+597	Rancor	WEAPON	greatsword_cruelty2	0			[vicious,2]	9000	weapon_greatsword	0	0						greatsword						W	
+598	Corsair Falchion	WEAPON	falchion	0			[vicious,2]	2000	falchion2	0	0						longsword						W,R	
+599	Heavy Scimitar	WEAPON	scimitar	0			[vicious,1]	2700	scimitar	0	0						zweihander						W	
+600	Sacrificial Dagger	WEAPON	steel_dagger	0			[holy,1][banishing,1]	600	weapon_dagger2	0	0						dagger							
+601	Short Bow	WEAPON	short_bow	0				150	weapon_shortbow	0	0						shortbow						W,R	
+602	Hunting Bow	WEAPON	medium_bow	0				650	weapon_bow	0	0						longbow						W,R	
+603	Oaken Bow	WEAPON	long_bow	0				1300	weapon_bow	0	0						longbow						W,R	
+604	Hunter's Mark	WEAPON	medium_bow	0			[beastslayer,2]	1200	weapon_bow	0	0						longbow						W,R	
+605	Lightning Blade	WEAPON	sword_shock_2	0				4500	weapon_longsword_shock	0	0						longsword						W,R	
+606	Justice	WEAPON	sword_flaming_2	0			[holy,3] [silver]	4500	weapon_sword_long_flaming	0	0						longsword						W,R,C	
+607	Winter Wail	WEAPON	sword_ice_2	0				-1	weapon_longsword_ice	0	0						longsword						W,R	
+608	Minotaur Axe	WEAPON	mino_greataxe	0				1200	battleaxe1	0	0						battleaxe						W	
+609	Firesplitter	WEAPON	axe_flaming_2	0				2400	axe3	0	0						axe						W,R	
+610	Primal Icicle	WEAPON	tier4_shortsword_ice	0			[orcslayer,2]	9000	shortsword_ice	0	0						shortsword						W,R	
+611	Stiletto	WEAPON	tier4_dagger_death	0			[vicious,2]	5000	dagger_death	0	0						dagger						R	
+612	Devourer Sting	WEAPON	devourer_sting	0			[paralysis,1]	5000	sting	0	0						dagger						R	
+613	Ancient Fang	WEAPON	fang	0			[beastslayer,1]	2800	fang	0	0						dagger							
+614	Icicle	WEAPON	tier4_shortsword_ice_b	0			[orcslayer,1]	9000	shortsword_ice	0	0						shortsword						W,R	
+615	Scimitar of Flames	WEAPON	scimitar_flames	0			[vicious,1]	2700	scimitar_fire	0	0						zweihander						W	
+616	Bone Maul	WEAPON	bone_maul	0			[stun,1]	1400	maul6	0	0						maul						W,C	
+617	Bone Mace	WEAPON	bone_mace	0			[stun,1]	1600	mace_bone	0	0						mace						W,C	
+618	Mystic Bone Mace	WEAPON	bone_mace	0			[stun,1][beastslayer,1]	3500	mace_bone2	0	20						mace						W,C	
+619	Lightning Falchion of Defense	WEAPON	falchion_shock	2			[vicious,2]	5000	falchion_blue	0	0						longsword						W,R	
+620	Glacier Stone	WEAPON	ice_mace2	0				2500	weapon_mace_white	0	0						mace						W,C	
+621	Lament	WEAPON	sword_ice_3	0			[slow,1]	-1	weapon_longsword_ice	0	0						longsword						W,R	
+622	Demonclaw	WEAPON	greatsword_cruelty3	0			[vicious,2][slow,1]	13000	weapon_greatsword	0	0						greatsword						W	
+623	Ghostfinger	SHIELD		1			[offhand][stun,1]	2000	dirk_dblue	0	0	5	s	stun	5	1	sword						R	
+624	Ancestral Blade of the Deer	WEAPON	sword_ice_4	0			[stun,1]	25000	weapon_longsword_ice	0	0						longsword						W,R	
+625	Godslayer	WEAPON	tier5_dagger_death	0			[vicious,2]	8000	weapon_dagger_death_epic	0	0						dagger						R	
+700	Silver Bow	WEAPON	medium_bow	0			[silver]	1900	weapon_shortbow	0	0						shortbow						W,R	
+701	Silver Dagger	WEAPON	steel_dagger	0			[silver]	800	weapon_dagger_white	0	0						dagger							
+702	Silver Shortsword	WEAPON	steel_shortsword	0			[silver]	900	weapon_shortsword_white	0	0						shortsword						W,R	
+703	Silver Longsword	WEAPON	steel_longsword	0			[silver]	1000	weapon_longsword_white	0	0						longsword						W,R	
+704	Silver Greatsword	WEAPON	steel_greatsword	0			[silver]	1500	weapon_greatsword_white	0	0						greatsword						W	
+705	Silver Mace	WEAPON	steel_mace	0			[silver]	900	weapon_mace_white	0	0						mace						W,C	
+708	Vulcan Bow	WEAPON	vulcan_bow	0				900	weapon_bow_fire	0	0						shortbow						W,R	
+709	Lightning Axe	WEAPON	axe_shock	0				2400	axe2	0	0						axe						W,R	
+710	Lightning Greataxe	WEAPON	greataxe_shock	0				3600	battleaxe2	0	0						battleaxe						W	
+711	Greataxe of Falling Stars	WEAPON	greataxe_death_2	0			[beastslayer,2]	18000	battleaxe4	0	0						battleaxe						W	
+712	Longsword of Falling Stars	WEAPON	longsword_death_2	0			[beastslayer,2]	18000	weapon_sword_long_magic3	0	0						longsword						W,R	
+713	Frost Bow	WEAPON	frost_bow	0				900	weapon_bow_ice	0	0						shortbow						W,R	
+714	Executioner's Axe	WEAPON	mino_greataxe	0			[vicious,2]	4000	battleaxe1	0	0						battleaxe						W	
+715	Poisonous Bow	WEAPON	poison_bow	0				900	weapon_bow_toxic	0	0						shortbow						R	
+716	Poisonous Longbow	WEAPON	poison_bow_tier2	0			[vicious,1]	1800	weapon_bow_toxic2	0	0						longbow						R	
+717	Sonnet	WEAPON	spirit_shortsword	2				5000	weapon_shortsword_magic	0	0						shortsword						W,R	
+718	Ghostbane	WEAPON	shock_mace_2	0			[holy,1]	3000	weapon_mace_blue	0	0						mace						W,C	
+719	Hammer of Corrosion	WEAPON	hammer_corrosion	0				2500	hammer_toxic	0	0						hammer						W,C	
+720	Maul of Corrosion	WEAPON	maul_corrosion	0				3000	maul_toxic	0	0						maul						W,C	
+721	Jester's Bow	WEAPON	jester_bow	0				4000	weapon_bow	0	0						shortbow						W,R	
+722	Despair	WEAPON	hammer_despair	0			[vicious,2]	6000	hammer_toxic	0	0						hammer						W,C,R	
+723	Maul of Garrak	WEAPON	maul_garrak	0			[silver]	8000	maul4	0	0						maul						W,C	
+724	Iron Golem Fist	WEAPON	golem_fist	0				1800	golem_fist	0	0						mace						W,C	
+725	Magma Axe	WEAPON	axe_magma	0				2900	axe_flames	0	0						axe						W,R	
+726	Soul Drinker	WEAPON	greataxe_death_3	0			[beastslayer,2]	18000	battleaxe4	0	0						battleaxe						W	
+727	Soul Cleaver	WEAPON	axe_death2	0				2900	axe4	0	0						axe						W,R	
+728	Icy Claymore	WEAPON	greatsword_ice2	0				7600	weapon_greatsword_ice	0	0						zweihander						W	
+729	Composite Bow	WEAPON	composite_bow	0				5000	longbow	0	0						longbow						W,R	
+730	Assasin's Longbow	WEAPON	poison_bow_tier4	0				4000	weapon_bow_toxic2	0	0						longbow						R	
+731	Maul of Desecration	WEAPON	maul_desecration	0				8000	maul5	0	0						maul						W,C	
+732	Mist Hunter's Bow	WEAPON	long_bow_shock	0				4000	longbow_shock	0	0						longbow						W,R	
+733	Flaming Warhammer	WEAPON	hammer_fire_2	0			[holy,1]	6000	hammer3	0	0						hammer						W,C,R	
+734	Paladin's Longsword	WEAPON	longsword_paladin	0			[holy,2]	18000	weapon_sword_long_magic4	0	0						longsword						W,C	
+735	Permafrost Greataxe	WEAPON	greataxe_ice_3	0			[paralysis,1]	2900	greataxe_frost	0	0						battleaxe						W	
+736	Imperial Trollhunter Bow	WEAPON	epic_short_bow_fire	0				5000	weapon_bow_fire	0	0						shortbow						W,R	
+737	Thunder	WEAPON	greatsword_thunder	0				1500	zweihander2	0	0						zweihander						W	
+740	Axe of the Depths	WEAPON	mino_greataxe_epic	0				3000	battleaxe5	0	0						battleaxe						W	
+741	Axe of the Minotaur Kings	WEAPON	mino_greataxe_epic_shock	0			[vicious,1]	5000	battleaxe4	0	0						battleaxe						W	
+742	Maul of Terror	WEAPON	maul_terror	0			[vicious,2][banishing,3]	8000	maul5	0	0						maul						W,C	
+750	Energy Blade	WEAPON	tech_sword	0			[emp,2]	1500	powerblade	0	0						longsword						W,C	
+751	Pneumatic Mallet	WEAPON	tech_maul	0			[emp,3]	1500	powermaul	0	0						maul						W,C	
+752	Monocarbon Scalpel	WEAPON	tech_dagger	0			[emp,1]	1500	powerdagger	0	0						shortsword							
+753	Ion Recurve	WEAPON	tech_bow	0			[emp,1]	1500	powerbow	0	0						longbow						W,R	
+754	Wyrmslayer	WEAPON	epic_short_bow_fire	0			[vicious,2][beastslayer,2]	5000	weapon_bow_fire	0	0						shortbow						W,R	
+755	Enchanted Vulcan Bow	WEAPON	vulcan_bow2	0				1300	weapon_bow_fire	0	0						shortbow						W,R	
+756	Phantom Longsword	WEAPON	sword_shock_3	0			[banishing,2]	9000	weapon_sword_long_magic3	0	0						longsword						W,R	
+757	Queen's Heart	WEAPON	tier5_icedagger	0			[banishing,2]	9000	weapon_dagger_ice	0	0						shortsword						R	
+758	Wooden Club	WEAPON	steel_mace	0				5	club	0	0						mace							
+759	Burning Club	WEAPON	fire_mace	0				5	club_fire	0	0						mace							
+760	Spirit Cleaver	WEAPON	spirit_claymore	0			[holy,3][banishing,3]	5000	zweihander4	0	0						zweihander						W	
+761	Spirit Breaker	WEAPON	spirit_hammer	0			[holy,2][banishing,2]	4000	hammer4	0	0						hammer						W,R,C	
+762	Midnight	WEAPON	mace_midnight	0			[vicious,3][paralysis,1]	6000	weapon_mace_death	0	0						mace						W,C	
+763	Shadow Blade	WEAPON	dagger_blackstar	0			[vicious,3][paralysis,1]	6000	weapon_dagger_death	0	0						shortsword						W,R	
+764	Melporth's Sword	WEAPON	sword_toxic_4	0			[beastslayer,3]	12000	weapon_sword_long_magic	0	0						longsword						W,R	
+765	Silver Bow of Malan	WEAPON	malan_bow	0			[holy,3][banishing,3][silver]	8000	longbow_shock	0	0						longbow						W,R	
+766	Scimitar of the Wolf	WEAPON	scimitar_death	2			[vicious,2]	4000	scimitar_fire	0	0						zweihander						W	
+767	Maul of Disease	WEAPON	maul_disease	0			[slow,1]	3000	maul_toxic	0	0						maul						W,C	
+768	Hammer of the White Priest	WEAPON	hammer_ice_2	0			[holy,2][silver]	6000	silver_hammer	0	0						hammer						W,C,R	
+769	Screaming Mace	WEAPON	death_mace2	0			[vicious,1]	550	skull_mace	0	0						mace						W,C	
+770	Vindicator	WEAPON	maul_vindicator	0			[holy,1][banishing,1]	4000	vindicator	0	0						maul						W,C	
+771	Skeletal Bow	WEAPON	death_bow2	0				200	skeletal_bow	0	0						shortbow						W,R	
+772	Ghost Eye	WEAPON	death_bow3	0			[vicious,1]	900	ghost_eye	0	0						shortbow						W,R	
+773	Permafrost Bow	WEAPON	permafrost_bow	0			[stun,1]	1800	permafrost_bow	0	0						longbow						W,R	
+774	The Lady's Eye	WEAPON	frost_bow2	0				400	weapon_bow_ice	0	0						shortbow						W,R	
+775	The Lord's Fist	WEAPON	death_mace3	0			[vicious,1]	1200	skull_mace	0	0						mace						W,C	
+776	Hunter's Machete	WEAPON	tier4_shortsword_shock	2			[beastslayer,2][silver]	5000	weapon_dagger3	0	0						shortsword						W,R	
+777	Magma Dagger	WEAPON	tier4_firedagger	0				1000	weapon_dagger_fire	0	0						dagger						W,R	
+778	Dancing Flame	WEAPON	tier4_shortsword_fire	0			[vicious,2]	6000	weapon_dagger_fire	0	0						shortsword						W,R	
+779	Golden Wand	WEAPON	wand_spirit_4	0			[wand][arcane,2][banishing,2]	3000	wand_golden	0	0						wand						M	
+1001	Minotaur Horn	general		0				280	horn	0	0													1
+1002	Damaged Wolf Pelt	general		0				50	grey_pelt	0	0													1
+1003	Perfect Wolf Pelt	general		0				200	grey_pelt	0	0													1
+1004	White Wolf Pelt	general		0				250	white_pelt	0	0													1
+1005	Fire Salts	general		0				250	red_substance	0	0													1
+1006	Living Ice	general		0				250	white_substance	0	0													1
+1007	Sparkling Powder	general		0				250	blue_substance	0	0													1
+1008	Poison Sac	general		0				40	green_organ	0	0													1
+1009	Zombie Flesh	general		0				9	meat_rotten	0	0													1
+1010	Skull	general		0				15	skull	0	0													1
+1011	Troll Hide	general		0				500	green_pelt	0	0													1
+1012	Fire Drake Scale	general		0				400	red_scale	0	0													1
+1013	Demonic Skull	general		0				666	skull_demon	0	0													1
+1014	Bear Pelt	general		0				200	red_pelt	0	0													1
+1015	Chitin Carapace	general		0				240	carapace	0	0													1
+1016	Sabercat Eye	general		0				200	eye	0	0													1
+1017	Corrupted Sabercat Eye	general		0				250	eye2	0	0													1
+1018	Vorator Egg	general		0				1200	egg	0	0													1
+1019	Giant Mamba Fang	general		0				500	fang_green	0	0													1
+1020	Coral Snake Fang	general		0				700	fang_red	0	0													1
+1021	Gold Ingot	general		0				2400	ingot_gold	0	0													
+1022	Muud'ari Energy Cell	general		0				300	cell2	0	0													1
+1023	Large Energy Cell	general		0				1000	cell1	0	0													1
+1024	Chunk of Fat	general		0				60	fat	0	0													1
+1025	Demonic Wolf Skull	general		0				1000	skull_demon	0	0													1
+1026	Demonic Wolf Heart	general		0				-1	puls_heart	0	0													1
+2001	Small Ruby	general		0				250	gem_ruby1	0	0													1
+2002	Small Emerald	general		0				400	gem_emerald1	0	0													1
+2003	Small Sapphire	general		0				300	gem_sapphire1	0	0													1
+2004	Small Diamond	general		0				480	gem_diamond1	0	0													1
+2012	Emerald	general		0				800	gem_emerald2	0	0													1
+2013	Ruby	general		0				850	gem_ruby2	0	0													1
+2014	Sapphire	general		0				700	gem_sapphire2	0	0													1
+2015	Pearl	general		0				1100	pearl	0	0													1
+2016	Purple Diamond	general		0				25000	purple_diamond	0	0													1
+2100	Blue Orchid	general		0				10	flower_blue	0	0													1
+2101	Red Orchid	general		0				10	flower_red	0	0													1
+2102	Luminescent Fungus	general		0				50	fungus_blue	0	0													1
+2103	Deadweed	general		0				30	deadweed	0	0													1
+2104	Merple	general		0				100	weed_blue	0	0													1
+2105	Tesur	general		0				140	tesur	0	0													1
+2500	Hendrick's Journal	general		0				-1	book1	0	0							SetVariable#forgotten_lore,20	VariableLower#forgotten_lore,20					
+2501	Zaniel's Journal	general		0				-1	book1	0	0							SetVariable#forgotten_lore,50	VariableLower#forgotten_lore,50					
+2502	Azaph's Ring of Elements	ring		0	8,8,12,0,0,0			500	ring1	0	0							SetVariable#warrior_honor,20	VariableEqual#warrior_honor,10					
+2503	Head of Itharrak the Firedancer	general		0				1	goblin_head	0	0							SetVariable#goblin_hunt3,50	VariableLower#goblin_hunt3,50					
+2504	Inheritance Letter	general		0				-1	letter1	0	0													
+2505	Cage Key	general		0				1	key1	0	0													
+2506	Mysterious Key	general		0				-1	key2	0	0													
+2507	Rhayader Medallion	necklace		0				-1	medallion1	0	0							SetVariable#spicing_things_up,50	VariableLower#spicing_things_up,50					
+2508	The Fire Crystal	general		0				-1	fire_crystal	0	0							SetVariable#item_fire_crystal,1						
+2509	The Ice Crystal	general		0				-1	ice_crystal	0	0							SetVariable#item_ice_crystal,1						
+2510	The Energy Crystal	general		0				-1	energy_crystal	0	0							SetVariable#item_energy_crystal,1						
+2511	Giles' Remains	general		0				-1	remains	0	0							SetVariable#where_is_giles,60	VariableLower#where_is_giles,60					
+2512	Letter From Giles	general		0				-1	letter1	0	0													
+2513	Orc Battle Plans	general		0				100	letters	0	0													1
+2514	Niram's Ring	ring		0				-1	ring1	0	0							SetVariable#goblin_hunt2,20						
+2515	Inheritance Letter	general		0				-1	letter1	0	0													
+2516	The Orb of Shadows	SHIELD		1	0,0,0,15,0,0			-1	orb_shadows	0	12							SetVariable#mad_wizard,60	VariableLower#mad_wizard,60				M	
+2517	Imperial Copper Penny	general		0				-1	coin	0	0													
+2518	Magical Sapphire	general		0				-1	gem_magic	0	0													
+2519	Love Letters From Lady Leanna	general		0				-1	letters	0	0							SetVariable#dubious_poetry,10	VariableLower#dubious_poetry,10					
+2520	Dartos' Ring of Isolation	ring		0	0,0,25,0,0,0			-1	ring1	0	0							SetVariable#apprentice_none,30	"VariableGreater#apprentice_none,9;VariableLower#apprentice_none,30"					
+2521	Tolassian Embalming Codex	general		0				-1	book1	0	0													
+2522	Signed Petition	general		0				-1	letter1	0	0													1
+2523	Small Brass Key	general		0				-1	key1	0	0													
+2524	Troll Doll	general		0				-1	doll1	0	0							SetVariable#odd_couple,40	VariableLower#odd_couple,40					
+2525	Ruby Key with number 6	general		0				-1	key_red	0	0													
+2526	Ancient Steel Key	general		0				-1	key1	0	0							SetVariable#abyss_gazed,33	"VariableGreater#abyss_gazed,9;VariableLower#abyss_gazed,33"					
+2527	Ruby Key with number 2	general		0				-1	key_red	0	0													
+2528	Ruby Key with number 3	general		0				-1	key_red	0	0													
+2529	Sir Morfados' Remains	general		0				-1	remains	0	0							SetVariable#restless_dead,60	VariableLower#restless_dead,60					
+2530	Zuz'sare's Charm	general		0				-1	scroll_blank	0	0													
+2531	My Little Vorator, by Terezza	general		0				-1	book1	0	0							SetVariable#stopping_prejudice,50	VariableEqual#stopping_prejudice,10					
+2532	Magical Sapphire	general		0				-1	gem_magic	0	0													
+2533	Ruby Key with number 1	general		0				-1	key_red	0	0													
+2534	Ruby Key with number 4	general		0				-1	key_red	0	0													
+2535	Ruby Key with number 5	general		0				-1	key_red	0	0													
+2536	Magical Ruby	general		0				-1	magic_ruby	0	0													
+2537	Ruby Key with number 7	general		0				-1	key_red	0	0													
+2600	Black Shard	general		0				-1	glass1	0	0													
+2601	Black Shard	general		0				-1	glass2	0	0													
+2602	On Imperial Necromancy	general		0				-1	book1	0	0													
+2603	Journal of Jorgus the Red	general		0				-1	book1	0	0							SetVariable#lost_coven,15	VariableEqual#lost_coven,10					
+2604	Ancient Quill Pen	general		0				-1	quill	0	0							SetVariable#mightier_sword,15	VariableEqual#mightier_sword,10					
+2605	The Oppalan Frontier	general		0				250	book1	0	0							SetVariable#duremas_book,1	VariableLower#duremas_book,1					
+2606	Torn Book Page	general		0				-1	scroll_blank	0	0													
+2607	Elleira's Pendant	necklace		0				-1	medallion1	0	0							SetVariable#princess_sea,50	VariableLower#princess_sea,50					
+2608	Of Ghosts and Spectres	general		0				-1	book1	0	0													
+2609	Vampires, the myth	general		0				-1	book1	0	0													
+2610	Winter rations	general		0				-1	sack	0	0							SetVariable#lost_good_book,45	VariableLower#lost_good_book,45					
+2611	Sister Calvin's Holy Symbol	necklace		0				-1	medallion1	8	8							SetVariable#moon_children,15	VariableEqual#moon_children,10					
+2612	Ancient Idol	general		0				-1	idol	0	0													
+2613	Ankh of Life	general		0				-1	ankh	0	0													
+2614	Serpentine Necklace	necklace		0				-1	medallion1	5	0													
+2615	Handwritten Note	general		0				1	scroll_blank	0	0													
+2616	Handwritten Note	general		0				1	scroll_blank	0	0													
+2617	Handwritten Note	general		0				1	scroll_blank	0	0													
+2618	Broken Crown of Tol	armor_head		0	0,0,0,0,30,30	0,2,0,0,0,0		-1	crown2	0	90							TolCurse#						
+2619	Red Card	general		0				-1	card_red	0	0													
+2620	Blue Card	general		0				-1	card_blue	0	0													
+2621	Green Card	general		0				-1	card_green	0	0													
+2622	Control Module	general		0				-1	module	0	0							SetVariable#ark_lothasan,71	VariableEqual#ark_lothasan,70					
+2623	First Orb of Galade	general		0				-1	orb_shadows	0	0													
+2624	Second Orb of Galade	general		0				-1	orb_shadows	0	0													
+2625	A Note	general		0				1	scroll_blank	0	0													
+2626	The Mathrisian Codex	general		0				-1	book4	0	0							SetVariable#lost_codex,30	VariableEqual#lost_codex,20					
+2627	Ancient Smithy Hammer	general		0				-1	hammer3	0	0													
+2628	Orange Card	general		0				-1	card_orange	0	0													
+2629	Handwritten Note	general		0				1	scroll_blank	0	0													
+2630	Data Pad	general		0				-1	datapad	0	0													
+2631	Pointy Tool	general		0				-1	tool	0	0													
+2632	Brother Ladan's Holy Symbol	necklace		0	18,0,18,0,0,0			-1	medallion1	0	10							SetVariable#missing_missionary,90	VariableEqual#missing_missionary,10				C,M	
+2633	Pulsating Heart	general		0				-1	puls_heart	0	0							SetVariable#lady_night,60	VariableLower#lady_night,60					
+2634	Handwritten Note	general		0				1	scroll_blank	0	0													
+2635	Sir Aramas' Remains	general		0				-1	remains	0	0							SetVariable#trial_error,80	VariableLower#trial_error,80					
+2636	Purple Medallion	necklace		0	0,0,0,15,0,15			1000	medallion	0	15													
+2637	Lifestone	general		0				-1	lifestone	0	0							SetVariable#trader_golem,60	VariableEqual#trader_golem,50					
+3001	Lesser Ring of Death Ward	ring		0	0,0,0,20,0,0			400	ring4	0	0													
+3002	Ring of the Elements	ring		0	7,7,10,0,0,0			400	ring1	0	0													
+3003	Lesser Ring of Flames	ring		0	10,0,0,0,0,0			250	ring2	0	0													
+3004	Lesser Ring of Ice	ring		0	0,10,0,0,0,0			250	ring3	0	0													
+3005	Ring of Death Ward	ring		0	0,0,0,30,0,0			1000	ring4	0	0													
+3007	Ring of Flames	ring		0	20,0,0,0,0,0			800	ring2	0	0													
+3008	Ring of Ice	ring		0	0,20,0,0,0,0			800	ring3	0	0													
+3009	Ring of Endurance	ring		0	0,0,0,0,20,0			800	ring5	0	0													
+3010	Lesser Ring of Endurance	ring		0	0,0,0,0,10,0			250	ring5	0	0													
+3011	Mystic Ring	ring		0	0,0,5,0,0,0			400	ring1	2	4												C,M	
+3012	Ring of Health	ring		0	0,0,0,0,20,0			6000	ring5	20	0													
+3013	Oasis Ring	ring		0	10,0,0,0,0,0	0,1,0,0,0,0		2500	ring2	0	0													
+3014	Sentient Ring	ring		0			[detection,1]	1200	ring6	3	3												R,C,M	
+3015	Greater Ring of Death Ward	ring		0	0,0,0,40,0,0			2200	ring4	0	0													
+3016	Greater Ring of Flames	ring		0	30,0,0,0,0,0			2200	ring2	0	0													
+3017	Greater Ring of Ice	ring		0	0,30,0,0,0,0			2200	ring3	0	0													
+3018	Ilmaran Signet Ring	ring		0	25,0,0,25,0,0		[detection,1]	6000	ring6	5	0													
+3019	Ring of Isolation	ring		0	0,0,25,0,0,0			1400	ring1	0	0													
+3020	Ring of the Frozen Heart	ring		0	0,18,0,0,18,0			3000	ring3	5	0													
+3021	Lesser Ring of Learning	ring		0			[wisdom,1]	2500	ring6	3	0													
+3022	Ring of Charm	ring		0		0,0,0,0,0,1		2200	ring5	5	0													
+3023	Iagus' Ring of Learning	ring		0	0,0,0,12,0,0		[wisdom,1]	2500	ring6	5	0													
+3024	Greater Ring of Endurance	ring		0	0,0,0,0,30,0			2200	ring5	0	0													
+3025	Ring of Unlife	ring		0	0,0,0,30,0,10	0,1,0,1,0,0		8000	ring7	0	0													
+3026	Ring of Vitality	ring		0	0,0,0,12,0,0	0,1,0,0,0,0		2500	ring2	8	0													
+3027	Ring of Mentalism	ring		0	0,0,0,0,0,10			2500	ring1	0	20												C,M	
+3028	The Abbot's Ring	ring		1	0,0,25,0,0,0	0,0,0,0,1,1	[wisdom,1]	7000	ring8	0	0													
+3029	Ivory Ring	ring		1	0,25,0,18,0,0		[detection,2]	2000	ring9	5	0													
+3030	Bishop Ring	ring		1	0,0,0,25,0,0	0,0,0,0,0,2	[wisdom,2]	7000	ring10	0	0													
+3031	Ring of Holiness	ring		1	0,30,0,0,0,0	0,0,0,0,0,1	[stunimmunity]	7000	ring10	20	0												C	
+3032	Ring of the Bull	ring		1	0,30,0,0,0,0	1,1,0,0,0,0		2500	ring5	20	0													
+3033	Ring of the Star Traveller	ring		1	0,0,21,0,0,0	0,0,0,1,0,0	[wisdom,2]	9000	ring11	0	42													
+3034	Ring of the Scholar	ring		0	0,0,0,10,0,0			250	ring4	0	4												C,M	
+3035	Defective Magic Ring	ring		0	0,0,5,0,0,0			180	ring4	0	2												C,M	
+3036	Ring of the Red Sorcerer	ring		0	30,0,0,0,0,0			1500	ring2	0	10												C,M	
+3037	Ring of the Planeswalker	ring		0	0,0,30,0,0,0			1500	ring4	0	10												M	
+3038	Arcanist's Ring of Ice	ring		0	0,30,0,0,0,0			1500	ring3	0	10												C,M	
+3039	Ring of the Trader	ring		0		0,0,0,0,0,1	[gossip,2]	1500	ring5	9	0													
+3040	Ring of Perfect Isolation	ring		0	0,0,35,0,0,0			1400	ring1	0	15													
+3200	Gauntlets of the Forge	armor_arms		0	10,0,0,0,0,0			120	gauntlets_forge	3	0													
+3201	Gloves of Luck	armor_arms		1	5,0,8,0,0,0		[tinkering,1]	600	armor_leather_hands2	5	0												W,R	
+3202	Laboratory Gloves	armor_arms		1	0,0,0,0,10,0			700	armor_leather_hands2	1	0													
+3203	Ruined Gauntlets of Might	armor_arms		0	0,0,0,0,10,0	1,0,0,0,0,0		1800	armor_leather_hands2	5	0													
+3204	Essence Gloves	armor_arms		2	0,0,15,0,0,0			3400	armor_blue_gloves	0	5												C,M	
+3205	Gloves of the Explorer	armor_arms		3	10,0,0,0,0,0		[tinkering,1][detection,1]	4000	armor_leather_hands2	7	0													
+3206	Gauntlets of Might	armor_arms		2	0,0,0,0,10,0	1,0,0,0,0,0		7000	gloves1	8	0													
+3207	Automated Gloves	armor_arms		1	0,0,9,0,0,9	0,0,3,0,0,0	[tinkering,3]	9000	gloves3	10	0													
+3500	Fur Cloak	cloak		0	0,10,0,0,0,0			100	cloak_grey	2	0													
+3501	Cloak of the Wolf	cloak		0	0,25,0,0,0,0			600	cloak_white	5	0													
+3502	Cloak of Survival	cloak		0	0,0,0,0,15,0			1000	cloak_green	10	0													
+3503	Nivarian Cloak	cloak		0	0,0,0,12,15,0			2000	cloak_white	8	0													
+3504	Spectral Cloak	cloak		0	0,0,10,0,25,0			3000	cloak_white	5	8													
+3505	Iron Will Mantle	cloak		0	0,0,0,0,0,25			4000	cloak_white	13	0													
+3506	Primeval Mantle	cloak		1	0,25,0,0,0,0			6000	cloak_green2	6	0													
+3507	Vorator Hide Mantle	cloak		1	20,0,0,0,0,0			4000	cloak_grey	15	0													
+3508	Cloak of Might	cloak		1		2,0,0,0,0,0		8000	cloak_grey	20	0													
+3509	Jabal Silk Cloak	cloak		0				400	cloak_green	2	5													
+3510	Phantom Cloak	cloak		0	8,8,8,0,0,0			400	cloak_grey	10	15												C,M	
+3511	Cloak of the Dark Fate	cloak		0	0,0,10,0,0,20			3000	cloak_grey	10	20												C,M	
+3512	Cloak of the Bear	cloak		1	0,12,0,0,0,12	0,2,0,0,0,0		11000	cloak_brown	20	0													
+4000	Blessed Necklace	necklace		0	0,0,0,15,10,0			800	necklace1	5	3													
+4001	Amulet of the Forest	necklace		0	0,0,0,0,0,10			800	necklace1	8	0													
+4002	Arcane Pendant	necklace		0	15,0,15,0,0,0			10000	necklace1	7	7												C,M	
+4003	Amulet of Wilderness	necklace		0	0,0,0,8,14,0			400	necklace1	0	6													
+4004	Necklace of Charm	necklace		0		0,0,0,0,0,1		2200	necklace1	9	9												C,M	
+4005	Half-Moon Medallion	necklace		0	0,0,15,0,0,15		[detection,1]	1500	necklace1	0	0													
+4006	Holy Symbol of the Three	necklace		0	0,0,0,0,0,20			-1	necklace1	0	0							SetVariable#restoring_faith,50	VariableLower#restoring_faith,50					
+4007	Amulet of the Eyes	necklace		0	0,0,0,0,0,13	0,0,0,0,1,0	[detection,1]	1000	amulet1	0	0													
+4008	Bloodied Scarf	necklace		2		0,0,0,0,0,0	[stunimmunity]	3000	sash_red	0	0												R	
+4009	Laertes' Medallion	necklace		0	0,0,0,0,17,0			-1	amulet1	0	0													
+4010	Anointed Medallion	necklace		0	0,0,0,10,0,10		[wisdom,2]	10000	medallion2	4	4												C	
+4011	Ursan Charm	necklace		1			[wisdom,1]	2000	medallion3	5	0													
+4012	Necklace of the Depths	necklace		0		0,0,0,0,0,1	[wisdom,1][detection,1]	6000	medallion2_ora	20	20												C,M	
+4013	Flame Pendant	necklace		0	45,0,0,0,0,0	0,1,0,0,0,0		1000	fire_crystal	0	0													
+4014	Shaman Charm	necklace		0	0,0,0,0,0,8	0,0,0,0,0,1	[detection,1]	1000	medallion3	8	8												C,M	
+4015	Charm of the Great Seer	necklace		0	0,0,0,0,0,15	0,0,0,0,1,1	[wisdom,2]	1000	medallion2	0	20												C,M	
+4016	Forsaken Pendant	necklace		0	0,0,0,0,0,20			-1	amulet2	0	0							SetVariable#ark_lothasan,95	VariableLower#ark_lothasan,95					
+4017	Magister Pendant	necklace		0		0,0,0,0,0,2	[wisdom,2]	-1	amulet2	20	20													
+4018	Imperial College Emblem	necklace		0	0,0,0,10,0,10		[detection,1]	1600	medallion2	5	16												C,M	
+4019	Amulet of Whispers	necklace		0		0,0,0,0,1,0		-1	amulet1	0	0													
+4020	Amulet of Dark Whispers	necklace		0		0,0,0,0,2,0	[stunimmunity]	8000	amulet_dark	-25	50													
+4021	Warrior's Gorget	necklace		2			[detection,3]	4000	gorget	30	0												W	
+4500	Tiara of the Heavens	armor_head		1	0,0,20,0,0,0	0,0,0,1,0,0	[detection,2]	4000	crown1	5	0													
+4501	Crown of Galade	armor_head		2	0,0,0,0,0,0	0,0,0,2,0,0	[detection,2]	-1	crown1	25	0							SetVariable#lost_kingdom,20	VariableEqual#lost_kingdom,10					
+4502	Tiara of the Mentalist	armor_head		2	0,0,10,0,0,10		[detection,1]	4000	crown1	0	15												C,M	
+4503	Greater Tiara of the Heavens	armor_head		2	0,0,25,0,0,0	0,0,0,2,0,0	[detection,2]	9999	crown1	15	0													
+5000	Potion of Light Healing	POTION		0				100	potion_red	0	0									GainHP#30				1
+5001	Potion of Moderate Healing	POTION		0				250	potion_red2	0	0									GainHP#60				1
+5002	Potion of Lesser Shielding	POTION		0				100	potion_yellow	0	0									GainShield#6,12				1
+5003	Potion of Shielding	POTION		0				200	potion_yellow	0	0									GainShield#10,12				1
+5004	Potion of Ogre Might	POTION		0				120	potion_green	0	0									GainMight#3,20				1
+5005	Potion of Giant Strength	POTION		0				250	potion_green	0	0									GainMight#6,20				1
+5006	Potion of Invisibility	POTION		0				350	potion_dblue	0	0									GainInvis#12				1
+5007	Potion of Speed	POTION		0				390	potion_grey	0	0									GainSpeed#12				1
+5008	Potion of Resist Fire	POTION		0				100	potion_resist_fire	0	0									ResistFire#25,60				1
+5009	Potion of Resist Cold	POTION		0				100	potion_resist_cold	0	0									ResistCold#25,60				1
+5010	Potion of Death Ward	POTION		0				100	potion_resist_death	0	0									ResistDeath#20,60				1
+5011	Potion of Resist Shock	POTION		0				100	potion_resist_shock	0	0									ResistShock#25,60				1
+5012	Potion of Resist Toxic	POTION		0				100	potion_resist_toxic	0	0									ResistToxic#25,60				1
+5013	Ancient Tolassian Tome	POTION		0				1000	book2	0	0									GainTrait#				0
+5014	Spider Venom	POTION		0				150	potion_green	0	0									PoisonWeapon#4,15			R	1
+5015	Scorpion Venom	POTION		0				500	potion_green	0	0									PoisonWeapon#7,10			R	1
+5016	Potion of Greater Healing	POTION		0				600	potion_red3	0	0									GainHP#90				1
+5017	Essence of Darkness	POTION		0				900	potion_dblue	0	0									PoisonWeapon#12,12			R	1
+5020	Lesser Potion of Mana	POTION		0				150	potion_lblue	0	0									GainMana#20			C,M	1
+5021	Potion of Mana	POTION		0				350	potion_lblue2	0	0									GainMana#35			C,M	1
+5022	Golden Apple	POTION		0				300	golden_apple	0	0									"GainMana#15;GainHP#40"				1
+5023	Potion of Lesser Restoration	POTION		0				800	potion_yellow2	0	0									LesserRestoration#				1
+5024	Greater Potion of Speed	POTION		0				350	potion_grey	0	0									GainSpeed#25				1
+5025	Potion of Clarity	POTION		0				450	potion_resist_spirit	0	0									ResistSpirit#30,30				1
+5026	Friguld Rum	POTION		0				70	liquor	0	0									GainRandomHP#60				1
+5027	Potion of Heroism	POTION		0				900	potion_bottle_red	0	0									"GainHP#50;GainMight#3,12;GainShield#6,12"				1
+5028	Potion of the Tragic Hero	POTION		0				600	potion_bottle_blue	0	0									"LoseHPToxic#50;GainMight#6,12;GainShield#10,12"				1
+5029	Giant Mead	POTION		0				200	potion_green2	0	0									"GainHP#75;GainMight#5,12"				
+5030	Greater Potion of Resist Fire	POTION		0				600	potion_resist_fire2	0	0									ResistFire#40,60				1
+5031	Greater Potion of Resist Cold	POTION		0				600	potion_resist_cold2	0	0									ResistCold#40,60				1
+5032	Greater Potion of Death Ward	POTION		0				600	potion_resist_death2	0	0									ResistDeath#40,60				1
+5033	Greater Potion of Resist Shock	POTION		0				600	potion_resist_shock2	0	0									ResistShock#40,60				1
+5034	Greater Potion of Resist Toxic	POTION		0				600	potion_resist_toxic2	0	0									ResistToxic#40,60				1
+5035	Tome of Lost Wisdom	POTION		0				8000	book4	0	0									GainSkillPoint#				0
+5036	Elixir of Galade	POTION		0				1200	potion_bottle_green	0	0									"GainHP#120;GainShield#12,8"				1
+5037	Deepfrost Cognac	POTION		0				50	potion_blue2	0	0									"GainMana#20;GainHP#10"			C,M	0
+5038	Whitetower Special	POTION		0				200	potion_blue3	0	0									"GainMana#40;GainHP#15"			C,M	1
+5039	Draught of the Iron Guardian	POTION		0				2000	potion_iron	0	0									Summon#golem_iron,15,60				1
+5040	Draught of the Forest Druid	POTION		0				180	potion_blue2	0	0									"GainMana#15;GainHP#20"			C,M	1
+5050	Potion of Epic Death Ward	POTION		0				1100	potion_resist_death	0	0									ResistDeath#80,60				1
+5051	Energy Cell	POTION		0				500	energy_cell	0	0									"LoseHPShock#40;GainMana#60"				1
+5052	Greater Potion of Mana	POTION		0				1000	potion_lblue3	0	0									GainMana#70			C,M	1
+5053	Panacea	POTION		0				2000	panacea	0	0									"ResistShock#40,20;ResistFire#40,20;ResistCold#40,20"				1
+5060	Epic Omelette	POTION		0				500	omelette	0	0									HalfRecovery#				
+5070	Medipack	POTION		0				500	medipack	0	0									GainHP#160				1
+6001	Scroll of Recall	SCROLL		0				280	scroll1	0	0									Recall#				1
+6002	Scroll of Detection	SCROLL		0				240	scroll4	0	0									Detect#				1
+6003	Scroll of Lesser Wisdom	SCROLL		0				400	scroll3	0	0									"GainEffect#xpbonus,2160,7;Particle#"				1
+6004	Scroll of Wisdom	SCROLL		0				1200	scroll3a	0	0									"GainEffect#xpbonus,2160,10;Particle#"				1
+6005	Scroll of Greater Wisdom	SCROLL		0				2900	scroll3b	0	0									"GainEffect#xpbonus,2160,15;Particle#"				1
+6006	Scroll: Summon Wolf	SCROLL		0				250	scroll_wolf	0	0									Summon#wolf,5,60		INT#1		1
+6007	Scroll: Summon Dire Wolf	SCROLL		0				400	scroll_wolf2	0	0									Summon#dire_wolf,7,60	6	INT#2		1
+6008	Scroll: Summon Earth Elemental	SCROLL		0				600	scroll_elemental	0	0									Summon#elemental_earth_lesser,9,60	12	INT#3		1
+6009	Scroll: Circle of Restoration	SCROLL		0				1500	scroll_restoration	0	0									CircleRestoration#	10	INT#2		1
+6010	Scroll: Turn Undead	SCROLL		0				900	scroll_turn	0	0									TurnUndead#		INT#3		1
+6011	Scroll: Teleport	SCROLL		0				600	scroll1b	0	0									Teleport#		INT#2		1
+6012	Scroll: Summon Fire Elemental	SCROLL		0				600	scroll_elemental_fire	0	0									Summon#fire_elemental_2,10,60	16	INT#4		1
+6013	Scroll: Summon Ice Elemental	SCROLL		0				600	scroll_elemental_ice	0	0									Summon#ice_elemental_2,10,60	16	INT#4		1
+6014	Scroll: Planar Binding	SCROLL		0				400	scroll_planar	0	0									PlanarBinding#	20	INT#6		1
+6015	Scroll: Test Area	SCROLL		0				600	scroll1b	0	0									Travel#H4_test,1				1
+7000	Belt of Might	belt		0		1,0,0,0,0,0		8000	belt1	0	0													
+7001	Belt of Agility	belt		0		0,0,1,0,0,0		8000	belt1	0	0													
+7002	Girdle of Agility	belt		2		0,0,1,0,0,0		18000	belt1	8	0													
+7003	Girdle of Might	belt		2		1,0,0,0,0,0		18000	belt1	8	0													
+7004	Superior Belt of Agility	belt		1		0,0,1,0,0,0		15000	belt1	6	0													
+7005	Superior Belt of Might	belt		1		1,0,0,0,0,0		15000	belt1	6	0													
+7006	Girdle of the Warrior	belt		0		2,0,0,0,0,0		24000	belt1	0	0													
+7007	Girdle of the Rogue	belt		0		0,0,2,0,0,0		29000	belt1	0	0													
+7008	Blessed Belt of Might	belt		0		1,0,0,0,0,0		10000	belt1	0	20												C,M	
+7009	Blessed Belt of Agility	belt		0		0,0,1,0,0,0		10000	belt1	0	20												C,M	
+7010	Force Belt	belt		2		3,0,0,0,0,0		15000	belt2	0	0													
+7011	Belt of Flowing Thought	belt		0		0,0,0,1,0,0		8000	belt1	0	0												M	
+7012	Superior Belt of Flowing Thought	belt		1		0,0,0,1,0,0		15000	belt1	6	0												M	
+7013	Girdle of the Sorcerer	belt		1		0,0,0,1,0,0		15000	belt1	0	15												M	
+7014	Girdle of Intellect	belt		2		0,0,0,1,0,0		15000	belt1	8	0												M	
+7015	Girdle of Supreme Intellect	belt		0		0,0,0,2,0,0		30000	belt1	0	0												M	
+10001	Tome of Jablarxis	general		0				100	book1	0	0													
+10002	Tome of the Yellow Sands	general		0				100	book1	0	0													
+10003	Tome of the Eldritch War	general		0				100	book1	0	0													
+10004	Tome of Nuhadaz	general		0				100	book1	0	0													
+10005	Tome of Eniarth	general		0				100	book1	0	0													
+10006	Annals of the Irux Rebellion	general		0				100	book1	0	0													
+10007	Tome of the Blazing Star	general		0				100	book1	0	0													
+10008	The General's Journal, Part I	general		0				100	book1	0	0													
+10009	The General's Journal, Part II	general		0				100	book1	0	0													
+10010	Seal Ring of House Tamoz	ring		0				250	ring1	0	0													
+10011	Seal Ring of House Essa	ring		0				250	ring1	0	0													
+10012	Seal Ring of House Urda	ring		0				250	ring1	0	0													
+10013	Seal Ring of House Zolast	ring		0				250	ring1	0	0													
+10014	Seal Ring of House Jomte	ring		0				250	ring1	0	0													
+10015	Seal Ring of House Tindra	ring		0				250	ring1	0	0													
+10016	Seal Ring of House Silar	ring		0				250	ring1	0	0													
+10017	Seal Ring of House Nabure	ring		0				250	ring1	0	0													
+10018	Seal Ring of House Dalgir	ring		0				250	ring1	0	0													
+10019	Seal Ring of House Imoz	ring		0				250	ring1	0	0													
+10020	Seal Ring of House Debir	ring		0				250	ring1	0	0													
+10021	Seal Ring of House Jiosa	ring		0				250	ring1	0	0													
+10022	Seal Ring of House Sempa	ring		0				250	ring1	0	0													
+10023	Seal Ring of House Jogor	ring		0				250	ring1	0	0													
+10024	Seal Ring of House Dimas	ring		0				250	ring1	0	0													
+10025	Seal Ring of House Thelor	ring		0				250	ring1	0	0													
+10026	Annals of the Ozor Rebellion	general		0				100	book1	0	0													
+10027	Tome of Imperial Poetry	general		0				100	book1	0	0													
+10028	Tome of Imperial Geography I	general		0				100	book1	0	0													
+10029	Tome of Imperial Geography II	general		0				100	book1	0	0													
+10030	Tome of Imperial Geography III	general		0				100	book1	0	0													
+10031	Annals of the Orc Rebellion	general		0				100	book1	0	0													
+10032	Tome of Imperial Poetry II	general		0				100	book1	0	0													
+10033	Tome of Imperial History I	general		0				100	book1	0	0													
+10034	Tome of Imperial History II	general		0				100	book1	0	0													
+10035	Tome of Imperial History III	general		0				100	book1	0	0													
+10036	A Brief History of the Emperors	general		0				100	book1	0	0													
+10037	Remains of Saint Zila	general		0				100	remains	0	0													
+10038	Remains of Saint Bomo	general		0				100	remains	0	0													
+10039	Remains of Saint Ladia	general		0				100	remains	0	0													
+10040	Remains of Saint Perso	general		0				100	remains	0	0													
