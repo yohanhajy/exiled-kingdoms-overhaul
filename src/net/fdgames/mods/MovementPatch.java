@@ -6,19 +6,14 @@ import net.fdgames.GameLevel.GameLevel;
 public class MovementPatch {
 
     /**
-     * Movimentação Isotrópica Perfeita:
-     * No jogo original, o método P.a(f, f2) usava k(f - f2) e l(f + f2) com peso 1.0f,
-     * gerando disparidade de velocidade entre os eixos.
+     * Multiplicador de velocidade calibrado (1.5f):
+     * Reduzido uniformemente em 25% (de 2.0f para 1.5f) para manter o ritmo de caminhada
+     * ágil e natural, garantindo que a habilidade 'Sprint' (+50% do Ladino / poções de velocidade)
+     * mantenha um impacto nítido de aceleração.
      *
-     * Com a fórmula perfeitamente simétrica:
-     *   k = 2.0f * (f - f2)
-     *   l = 2.0f * (f + f2)
-     *
-     * A magnitude vetorial no mundo (k^2 + l^2) é exatamente 8.0 para qualquer ângulo theta
-     * (pois 4(1 - sin 2*theta) + 4(1 + sin 2*theta) = 8.0, o seno se anula perfeitamente).
-     *
-     * Isso equaliza horizontal (esquerda/direita), vertical (cima/baixo) e diagonais
-     * para a mesma velocidade rápida, fluida e constante em 360 graus.
+     * Fórmula perfeitamente isotrópica e simétrica em 360°:
+     *   k = 1.5f * (f - f2)
+     *   l = 1.5f * (f + f2)
      */
     public static void updateMovement(float f, float f2) {
         if (!GameLevel.m() && GameLevel.a().ao() != MapActor$ActorState.f && GameLevel.a().ao() != MapActor$ActorState.h) {
@@ -35,9 +30,9 @@ public class MovementPatch {
                 f2 /= len;
             }
 
-            // Velocidade perfeitamente simétrica e rápida em todas as direções
-            GameLevel.a().k(2.0f * (f - f2));
-            GameLevel.a().l(2.0f * (f + f2));
+            // Velocidade perfeitamente uniforme e calibrada (-25%)
+            GameLevel.a().k(1.5f * (f - f2));
+            GameLevel.a().l(1.5f * (f + f2));
         }
     }
 }
