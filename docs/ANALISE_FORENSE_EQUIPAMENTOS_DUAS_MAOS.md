@@ -72,49 +72,62 @@ Todas as 80 armas utilizam exclusivamente uma grade padronizada de $9 \text{ col
 
 ---
 
-## 4. Por que Abordagens Procedurais/Automáticas Falham?
+## 4. Por que Abordagens Procedurais e Premissas Ingênuas Falham?
 
-A tentativa empírica de gerar um braço secundário através de código procedural revelou os dois grandes nós górdios da engine:
+A tentativa empírica e a auditoria crítica formal do **Guardião de Bugs** revelaram os nós górdios da engine:
 
-### A. O Paradoxo do "Braço Triplo" (Efeito Ganesha)
+### A. A Falsa Simetria entre Arcos e Armas Melee (`BUG-2H-AUDIT-01`)
+* Em `longbow.png` e `shortbow.png`, a arma já fica ancorada nativamente na mão **esquerda** do personagem em $(69, 103)$, deixando o braço direito inerte.
+* Em armas melee (`greatsword`, `battleaxe`, `maul`, `staff`), a arma fica ancorada na mão **direita** em $(94, 99)$, deixando o braço esquerdo inerte.
+* Uma lógica homogênea que faça a mão esquerda buscar o cabo funciona para espadas, mas é desastrosa para arcos (a mão esquerda tentaria alcançar a si mesma, enquanto a mão direita ficaria vazia). É mandatório bifurcar a cinemática:
+  - **Melee 2H:** Mão esquerda busca o cabo da arma na mão direita.
+  - **Ranged 2H (Arcos):** Mão direita busca a corda/flecha na altura do peito/ombro esquerdo.
+
+### B. O Colapso Cinemático de "Arma no Ombro" na Caminhada e Ataque (`BUG-2H-AUDIT-02`)
+* A ideia ingênua de apoiar espadões no ombro só funciona no estado inativo (*Idle*, `ActorState.a`).
+* Durante a caminhada (`ActorState.b`, 8 frames), os ombros oscilam e a lâmina atravessaria a cabeça e o elmo.
+* No ataque (`ActorState.c`, 4 frames de golpe vertical/diagonal), o braço executa um arco descendente. Se a arma estiver fixa no ombro, ela flutua desconectada no ar enquanto as mãos golpeiam o vazio. A arma **deve** acompanhar o vetor de ataque.
+
+### C. O Paradoxo do "Braço Triplo" e Incompatibilidade Vetorial
 * No spritesheet de corpo (`male_naked.png`, `male_plate.png`), o braço esquerdo já está gravado nos pixels entre $X \in [61, 77]$ e $Y \in [87, 119]$.
-* Se um script desenhar um segundo braço estendido em direção à espada, o jogador verá **dois braços esquerdos**: um estendido até a espada e outro pendurado na cintura.
-* Tentar "apagar" o braço da cintura via máscara opaca é inviável, pois embaixo do braço existem diferentes texturas de fundo (tecido de túnica, couro, armadura de placas brancas, cota de malha vermelha, etc.).
-
-### B. Incompatibilidade com o Estilo Artístico Pixel Art
-* O jogo utiliza arte 2D pré-renderizada com sombreamento baked, paleta de cores terrosa e traços específicos de iluminação.
-* Linhas vetoriais ou primitivas geométricas (`draw.line`, `draw.ellipse`) quebram imediatamente a harmonia visual, gerando artefatos destoantes que se assemelham a "paus de madeira" ou "alavancas", como documentado na captura de tela:
+* Linhas procedurais ou primitivas geométricas quebram o estilo pré-renderizado/pixel art do jogo, produzindo artefatos como o "bastão marrom" registrado na captura de tela:
 
 ![Aberração Visual do Braço Procedural](/home/yhn/.gemini/antigravity-cli/brain/5e06dd3b-769a-40c2-abf6-8be3977927a3/.user_uploaded/uploaded_media_1792887792899.png)
 
 ---
 
-## 5. As 3 Rotas de Engenharia para a Solução Definitiva
+## 5. A Arquitetura Reestruturada: Rotas Viáveis e Mitigação de Escopo
 
-Para quando este módulo for retomado, a solução deverá seguir uma das 3 rotas formais abaixo:
+O laudo do Guardião de Bugs redefiniu as rotas viáveis, desmistificando o mito de que seria necessário recriar todas as 40 armaduras:
 
 ```mermaid
 flowchart TD
-    Root["Resolução Visual: Equipamentos de Duas Mãos"] --> R1["Rota 1: Redesenho da Pose da Arma<br/><i>(Resting on Shoulder / Guarda Alta)</i>"]
-    Root --> R2["Rota 2: Spritesheets de Tronco Dedicados<br/><i>(Corpo 2H para cada Armadura)</i>"]
-    Root --> R3["Rota 3: Camada de Grip em Pixel Art Manual<br/><i>(Arte Manual 140x140 com Luvas e Oclusão)</i>"]
+    Root["Resolução Visual: Equipamentos de Duas Mãos"] --> ClassMatrix["1. Filtro por Restrição de Classes<br/><i>(Reduz matriz de armaduras em >60%)</i>"]
+    ClassMatrix --> Fork{"2. Bifurcação de Domínio"}
+    
+    Fork -- "Melee (greatsword, axe, maul, staff)" --> MeleePath["<b>Rota Melee 2H</b><br/>Ancorada na mão DIREITA.<br/>Mão esquerda alcança o cabo.<br/>Oclusão de quadril via Joint Mask."]
+    Fork -- "Ranged (longbow, shortbow)" --> BowPath["<b>Rota Ranged 2H</b><br/>Ancorada na mão ESQUERDA.<br/>Mão direita alcança a corda no peito."]
 
-    R1 --> V1["Alinha a arma com a mão já existente no ombro.<br/>Custo de arte baixo, compatível com corpos atuais."]
-    R2 --> V2["Substitui o corpo quando twohanded == true.<br/>Visual perfeito, mas exige recriar 40 armaduras."]
-    R3 --> V3["Desenha apenas as mãos e guarda em pixel art.<br/>Mantém corpos originais e resolve o encaixe."]
+    MeleePath --> Tech["Técnica de Oclusão:<br/><b>Joint Mask Sampling</b>"]
+    BowPath --> Tech
 ```
 
-### Rota 1: Postura da Arma no Ombro (*Resting on Shoulder*) — *Recomendada para Armas Pesadas*
-* Em jogos clássicos e ilustrações medievais, espadões e machados de guerra são carregados apoiados sobre o ombro direito, com a mão direita segurando o cabo próximo ao peito.
-* **Vantagem:** Utiliza a anatomia já existente do corpo do personagem, dispensando a necessidade de reposicionar o braço esquerdo durante a caminhada.
+### 1. Otimização do Grafo de Classes (`BUG-2H-AUDIT-03`)
+Não é necessário suportar 40 armaduras para todas as armas de duas mãos, devido às regras de classe do jogo:
+* **Guerreiro (Warrior):** Apenas `greatsword`, `zweihander`, `battleaxe`, `maul`, `shortbow`, `longbow`.
+* **Mago (Mage):** Apenas `staff`, `greatstaff` (não usa armaduras de placas nem couro pesado).
+* **Ladino (Rogue):** Apenas `shortbow`, `longbow` (não usa espadões nem placas).
+* **Clérigo (Cleric):** Apenas `maul` de duas mãos.
+Essa separação reduz drasticamente o volume de combinações visuais necessárias.
 
-### Rota 2: Spritesheet de Tronco de Duas Mãos (*Dedicated 2H Body Stance*)
-* Criar variantes `male_plate_2h.png`, `male_clothes_2h.png`, onde o próprio modelo corporal foi desenhado com ambos os braços erguidos em postura de combate de duas mãos.
-* **Vantagem:** Elimina completamente o problema de braços sobrepostos e oferece a animação mais bonita e profissional possível.
-* **Trade-off:** Exige desenhar os frames de corpo para cada um dos conjuntos de armadura do jogo.
+### 2. A Técnica de Oclusão: *Joint Mask Sampling* (`BUG-2H-AUDIT-04`)
+Para eliminar o braço relaxado da cintura sem a necessidade de desenhar dezenas de corpos do zero:
+1. **Injeção na Camada 5 (Offhand):** Desenha a luva secundária empunhando o cabo da arma ou puxando a corda do arco.
+2. **Máscara de Amostragem Local (*Joint Mask*):** Um retângulo de amortecimento de $14 \times 20\text{ px}$ é amostrado dinamicamente da textura da armadura/tronco equipada (na mesma célula de animação) e sobreposto exatamente sobre a posição do braço inerte na cintura.
+3. Como a textura amostrada pertence à própria armadura em uso, o braço da cintura é perfeitamente camuflado pela própria estampa da armadura, eliminando o efeito do braço triplo de forma nativa e limpa.
 
-### Rota 3: Luvas e Empunhadura em Pixel Art Manual (*Handcrafted Pixel Art Overlay*)
-* Em vez de código procedural, desenhar manualmente em software de pixel art (Aseprite / GIMP) a luva/manopla segurando a empunhadura para cada uma das 5 direções, respeitando a paleta e iluminação do jogo.
+### 3. Suporte a Companheiros e NPCs (`BUG-2H-AUDIT-05`)
+A injeção visual deve cobrir não apenas o jogador (`Player.ac()`), mas também os companheiros que utilizam armas de duas mãos (como Grissenda com espadões/mauls ou Adaon com arcos), respeitando a alternância entre modo companheiro ativo e modo repouso em tavernas.
 
 ---
 
