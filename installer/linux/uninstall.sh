@@ -39,12 +39,34 @@ printf "${C_BOLD}===============================================================
 
 TARGET_GAME_DIR=""
 
-# Check if running inside the game directory
-if [ -f "./exiledkingdoms.jar" ] && [ -f "./config.json" ]; then
+# 1. Priority 1: Command line argument (e.g. ./uninstall.sh "/path/to/game")
+if [ $# -gt 0 ] && [ -n "$1" ]; then
+    arg_path="$1"
+    case "$arg_path" in
+        "~"*) arg_path="$HOME${arg_path#\~}" ;;
+    esac
+    if [ -f "$arg_path/exiledkingdoms.jar" ]; then
+        TARGET_GAME_DIR="$arg_path"
+    fi
+fi
+
+# 2. Priority 2: Environment variable EXILED_KINGDOMS_DIR
+if [ -z "$TARGET_GAME_DIR" ] && [ -n "${EXILED_KINGDOMS_DIR:-}" ]; then
+    env_path="$EXILED_KINGDOMS_DIR"
+    case "$env_path" in
+        "~"*) env_path="$HOME${env_path#\~}" ;;
+    esac
+    if [ -f "$env_path/exiledkingdoms.jar" ]; then
+        TARGET_GAME_DIR="$env_path"
+    fi
+fi
+
+# 3. Priority 3: Current directory
+if [ -z "$TARGET_GAME_DIR" ] && [ -f "./exiledkingdoms.jar" ] && [ -f "./config.json" ]; then
     TARGET_GAME_DIR=$(pwd)
 fi
 
-# Detect Steam paths if not in game directory
+# 4. Priority 4: Search standard Steam roots and libraryfolders.vdf
 if [ -z "$TARGET_GAME_DIR" ]; then
     CANDIDATE_ROOTS="
 $HOME/.local/share/Steam

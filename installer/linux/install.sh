@@ -67,12 +67,39 @@ log_info "Conteúdo do mod localizado em: $SOURCE_MODS"
 # 2. Detect Exiled Kingdoms Steam installation
 TARGET_GAME_DIR=""
 
-# Check if current directory is the game directory
-if [ -f "./exiledkingdoms.jar" ] && [ -f "./config.json" ]; then
+# 2a. Priority 1: Command line argument (e.g. ./install.sh "/path/to/game")
+if [ $# -gt 0 ] && [ -n "$1" ]; then
+    arg_path="$1"
+    case "$arg_path" in
+        "~"*) arg_path="$HOME${arg_path#\~}" ;;
+    esac
+    if [ -f "$arg_path/exiledkingdoms.jar" ] && [ -f "$arg_path/config.json" ]; then
+        TARGET_GAME_DIR="$arg_path"
+        log_info "Diretório especificado via argumento: $TARGET_GAME_DIR"
+    else
+        log_error "O caminho especificado via argumento não contém 'exiledkingdoms.jar' e 'config.json': $arg_path"
+        exit 1
+    fi
+fi
+
+# 2b. Priority 2: Environment variable EXILED_KINGDOMS_DIR
+if [ -z "$TARGET_GAME_DIR" ] && [ -n "${EXILED_KINGDOMS_DIR:-}" ]; then
+    env_path="$EXILED_KINGDOMS_DIR"
+    case "$env_path" in
+        "~"*) env_path="$HOME${env_path#\~}" ;;
+    esac
+    if [ -f "$env_path/exiledkingdoms.jar" ] && [ -f "$env_path/config.json" ]; then
+        TARGET_GAME_DIR="$env_path"
+        log_info "Diretório detectado via EXILED_KINGDOMS_DIR: $TARGET_GAME_DIR"
+    fi
+fi
+
+# 2c. Priority 3: Current directory
+if [ -z "$TARGET_GAME_DIR" ] && [ -f "./exiledkingdoms.jar" ] && [ -f "./config.json" ]; then
     TARGET_GAME_DIR=$(pwd)
 fi
 
-# List of standard Steam installation roots
+# 2d. Priority 4: Search standard Steam roots and libraryfolders.vdf
 if [ -z "$TARGET_GAME_DIR" ]; then
     log_info "Procurando diretório de instalação do Exiled Kingdoms na Steam..."
     

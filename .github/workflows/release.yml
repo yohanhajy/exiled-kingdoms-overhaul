@@ -10,42 +10,111 @@ permissions:
   contents: write
 
 jobs:
-  release:
-    name: Build Universal Releases
+  build-linux:
+    name: Build Linux Distribution
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
+      - name: Package Linux Artifacts
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          [ -z "$VERSION" ] && VERSION="1.0.0"
+          
+          mkdir -p release_linux/ExiledKingdomsOverhaul-v${VERSION}-Linux
+          PKG_DIR="release_linux/ExiledKingdomsOverhaul-v${VERSION}-Linux"
+          
+          cp installer/linux/install.sh "$PKG_DIR/install.sh"
+          cp installer/linux/uninstall.sh "$PKG_DIR/uninstall.sh"
+          chmod +x "$PKG_DIR/install.sh" "$PKG_DIR/uninstall.sh"
+          cp README.md "$PKG_DIR/README.txt"
+          cp -R mods "$PKG_DIR/mods"
+          
+          mkdir -p artifacts
+          tar -czf "artifacts/ExiledKingdomsOverhaul-v${VERSION}-Linux.tar.gz" -C release_linux "ExiledKingdomsOverhaul-v${VERSION}-Linux"
+          (cd release_linux && zip -qr "../artifacts/ExiledKingdomsOverhaul-v${VERSION}-Linux.zip" "ExiledKingdomsOverhaul-v${VERSION}-Linux")
+
+      - name: Upload Linux Artifacts
+        uses: actions/upload-artifact@v4
         with:
-          distribution: 'temurin'
-          java-version: '8'
+          name: linux-dist
+          path: artifacts/*
+
+  build-windows:
+    name: Build Windows Distribution
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Install Inno Setup
-        run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-          sudo apt-get install -y wine wine32 wine64 curl
-          mkdir -p scratch/innosetup
-          curl -L "https://github.com/jrsoftware/issrc/releases/download/is-7_1_0/innosetup-7.1.0-x64.exe" -o scratch/innosetup/setup.exe
-          wine scratch/innosetup/setup.exe /VERYSILENT /DIR="Z:\\$GITHUB_WORKSPACE\\scratch\\innosetup\\app" /NOICONS
+        run: choco install innosetup --no-progress
 
-      - name: Package Distributions
+      - name: Compile Inno Setup Installer
         run: |
-          chmod +x package_release.sh installer/windows/build_windows_installer.sh installer/linux/install.sh installer/linux/uninstall.sh
-          ./package_release.sh
+          mkdir release
+          if (Get-Command iscc -ErrorAction SilentlyContinue) {
+            iscc installer\windows\setup.iss
+          } elseif (Test-Path "C:\Program Files (x86)\Inno Setup 6\ISCC.exe") {
+            & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\windows\setup.iss
+          } elseif (Test-Path "C:\Program Files\Inno Setup 6\ISCC.exe") {
+            & "C:\Program Files\Inno Setup 6\ISCC.exe" installer\windows\setup.iss
+          } else {
+            throw "ISCC compiler not found"
+          }
 
-      - name: Publish GitHub Release
+      - name: Upload Windows Installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-dist
+          path: release/*.exe
+
+  publish:
+    name: Publish Official GitHub Release
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download Linux Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: linux-dist
+          path: release
+
+      - name: Download Windows Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-dist
+          path: release
+
+      - name: Create Universal Bundle & Checksums
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          [ -z "$VERSION" ] && VERSION="1.0.0"
+          
+          mkdir -p "bundle_tmp/ExiledKingdomsOverhaul-v${VERSION}-Universal"
+          UNIV_DIR="bundle_tmp/ExiledKingdomsOverhaul-v${VERSION}-Universal"
+          
+          cp release/ExiledKingdomsOverhaul-Setup-*.exe "$UNIV_DIR/"
+          cp installer/linux/install.sh "$UNIV_DIR/install.sh"
+          cp installer/linux/uninstall.sh "$UNIV_DIR/uninstall.sh"
+          chmod +x "$UNIV_DIR/install.sh" "$UNIV_DIR/uninstall.sh"
+          cp README.md "$UNIV_DIR/README.txt"
+          cp -R mods "$UNIV_DIR/mods"
+          
+          (cd bundle_tmp && zip -qr "../release/ExiledKingdomsOverhaul-v${VERSION}-Universal.zip" "ExiledKingdomsOverhaul-v${VERSION}-Universal")
+          
+          cd release
+          sha256sum * > SHA256SUMS.txt
+          ls -lh
+
+      - name: Publish to GitHub Releases
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            release/ExiledKingdomsOverhaul-Setup-*.exe
-            release/ExiledKingdomsOverhaul-*-Linux.tar.gz
-            release/ExiledKingdomsOverhaul-*-Linux.zip
-            release/ExiledKingdomsOverhaul-*-Universal.zip
-            release/SHA256SUMS.txt
+          files: release/*
           generate_release_notes: true
           draft: false
           prerelease: false
