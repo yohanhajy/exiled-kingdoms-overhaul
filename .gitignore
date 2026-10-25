@@ -6,6 +6,7 @@ decompiled/
 
 # Arquivos de rascunho e testes temporários
 scratch/
+release/
 
 # Backups, logs e saves do jogo
 *.bak

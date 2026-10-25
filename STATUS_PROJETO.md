@@ -1,7 +1,8 @@
 # Status do Projeto: Exiled Kingdoms Overhaul
 
 > **Data de Atualização:** 24 de Outubro de 2026  
-> **Plataforma:** Exiled Kingdoms (Steam Nativo Linux / Engine LibGDX / OpenJDK 1.7)  
+> **Plataforma:** Exiled Kingdoms (Steam Nativo Linux & Windows / Engine LibGDX / OpenJDK 1.7)  
+> **Repositório GitHub:** `https://github.com/yohanhajy/exiled-kingdoms-overhaul`  
 > **Diretório do Modding:** `/home/yhn/Projetos/exiled-kingdoms-mod`  
 > **Diretório do Jogo:** `/home/yhn/.local/share/Steam/steamapps/common/Exiled Kingdoms`  
 
@@ -58,34 +59,41 @@ Todos os **432 itens equipáveis** do jogo foram auditados um a um:
 ---
 
 ### E. Correção Crítica de Física: Movimentação Isométrica Uniforme 360° (Jogador e NPCs/Inimigos)
-No jogo original, o criador cometeu um erro matemático clássico de projeção isométrica 2:1 (`ScreenX = x + y`, `ScreenY = (y - x) / 2`). Ao repassar os comandos direcionais do teclado/controle e os passos de pathfinding da IA com peso 1:1, a velocidade vertical (cima/baixo) ficava com apenas **50% da velocidade horizontal** (esquerda/direita) tanto para o jogador quanto para todos os inimigos e companheiros.
+No jogo original, o criador cometeu um erro matemático de projeção isométrica 2:1 (`ScreenX = x + y`, `ScreenY = (y - x) / 2`). Ao repassar os comandos direcionais do teclado/controle e os passos de pathfinding da IA com peso 1:1, a velocidade vertical ficava com apenas **50% da velocidade horizontal** tanto para o jogador quanto para todos os inimigos e companheiros.
 - **Implementado [`MovementPatch.java`](file:///home/yhn/Projetos/exiled-kingdoms-mod/src/net/fdgames/mods/MovementPatch.java)**:
   * Injetada compensação de 2.0x no eixo vertical (`k(C * (f - 2.0f * f2))`, `l(C * (f + 2.0f * f2))`) com constante calibrada $C = 0.80f$.
-  * Normalização vetorial Euclidiana ($\sqrt{x^2 + y^2}$) para garantir velocidade rigorosamente homogênea em 360° (horizontal, vertical e diagonais exatos a $1.60$).
-  * **Estendido para Todos os NPCs, Inimigos e Companheiros**: Interceptado `Character.H()` (o motor de pathfinding do jogo), garantindo que monstros em perseguição e companheiros acompanhem o jogador com a mesma física e velocidade balanceada em todos os eixos.
+  * Normalização vetorial Euclidiana ($\sqrt{x^2 + y^2}$) para velocidade homogênea em 360° ($1.60\text{ px/tick}$ em todos os eixos).
+  * **Estendido para Todos os NPCs, Inimigos e Companheiros**: Interceptado `Character.H()` (o motor de pathfinding do jogo), garantindo perseguição e escolta perfeitas.
   * Bytecodes de `P.class` e `Character.class` interceptados via Javassist e sincronizados no jogo.
 
 ---
 
-### F. Empunhadura Visual de Duas Mãos (Two-Handed Visual Grip)
-No jogo original, equipar uma arma de duas mãos (espadão, machado de guerra, marreta, cajado ou arco) desativava a mão secundária no inventário, mas no modelo do personagem a arma continuava sendo segurada com apenas uma mão, deixando a outra mão solta e inerte na cintura.
-- **Auditoria Forense:** Mapeados todos os 80 equipamentos de duas mãos do jogo, divididos em 8 arquétipos de spritesheet (`greatsword`, `zweihander`, `battleaxe`, `maul`, `greatstaff`, `staff`, `longbow`, `shortbow`).
-- **16 Novos Spritesheets de Grip:** Geradas 16 texturas ($1260 \times 1540$ RGBA) para esqueletos masculinos e femininos (`male_offhand_twohand_[arma].png` e `female_offhand_twohand_[arma].png`).
-- **Injeção Dinâmica em [`EquipmentVisuals.java`](file:///home/yhn/Projetos/exiled-kingdoms-mod/src/net/fdgames/mods/EquipmentVisuals.java)**:
-  * Quando `character.sheet.g().twohanded == true`, a Camada 5 (Offhand) injeta automaticamente o spritesheet de empunhadura secundária.
-  * O braço e mão secundária cruzam o abdômen e seguram firmemente o cabo/haste da arma em 3D layer sandwich, sem afetar armas de uma mão e escudos.
+### F. Investigação Anatômica & Auditoria Forense das Armas de Duas Mãos
+No jogo original, equipar uma arma de duas mãos desativa o slot de mão secundária, mas no modelo visual a arma continua sendo segurada por apenas uma mão (a direita), mantendo o braço esquerdo inerte na cintura.
+- **Censo dos 80 Equipamentos 2H:** Catalogados todos os 80 itens de duas mãos em 8 arquétipos (`greatsword`, `zweihander`, `battleaxe`, `maul`, `greatstaff`, `staff`, `longbow`, `shortbow`).
+- **Auditoria do Guardião de Bugs:** Diagnosticada a falha da rota ingênua ("Resting on Shoulder") durante caminhada e ataque, a assimetria anatômica entre arcos (mão esquerda) e espadas (mão direita), e a especificação da técnica de *Joint Mask Sampling*.
+- **Relatório Forense & Laudo Crítico:** Documentado formalmente em [`docs/ANALISE_FORENSE_EQUIPAMENTOS_DUAS_MAOS.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/docs/ANALISE_FORENSE_EQUIPAMENTOS_DUAS_MAOS.md) e arquivado para a fase de pixel art artesanal.
 
 ---
 
-### G. Documentação Técnica & Especificações Arquiteturais
+### G. Instaladores Universais em 1 Clique (Linux & Windows)
+Para garantir uma experiência amigável, segura e profissional tanto para usuários de Windows quanto de qualquer distribuição Linux:
+- **Windows (Instalador Nativo e Confiável):** Criado script Inno Setup [`installer/windows/setup.iss`](file:///home/yhn/Projetos/exiled-kingdoms-mod/installer/windows/setup.iss) compilado em `release/ExiledKingdomsOverhaul-Setup-v1.0.0.exe`. Ele substitui scripts `.bat` suspeitos por um instalador visual profissional padrão do Windows, com detecção automática do Steam no Registro (`HKEY_CURRENT_USER\Software\Valve\Steam`), backup seguro de `config.json` e registro no Desinstalador de Aplicativos do Windows (`unins000.exe`).
+- **Linux (Compatibilidade POSIX Estrita):** Criado [`installer/linux/install.sh`](file:///home/yhn/Projetos/exiled-kingdoms-mod/installer/linux/install.sh) em `/bin/sh` estritamente POSIX (validado com `sh --posix`), sem qualquer bashism, compatível com Ubuntu, Debian, Fedora, Arch, openSUSE, Void, Alpine e SteamOS (Steam Deck). Detecta automaticamente diretórios padrão, Flatpak, Snap e múltiplos discos via `libraryfolders.vdf`.
+- **Pipeline de Empacotamento Automatizado:** Script [`package_release.sh`](file:///home/yhn/Projetos/exiled-kingdoms-mod/package_release.sh) gera os pacotes `Setup.exe`, `Linux.tar.gz`, `Linux.zip`, `Universal.zip` e suas somas de verificação SHA-256.
+- **GitHub Actions CI/CD:** Workflow [`.github/workflows/release.yml`](file:///home/yhn/Projetos/exiled-kingdoms-mod/.github/workflows/release.yml) automatiza a publicação de releases anexando os binários a cada tag `v*`.
+
+---
+
+### H. Documentação Técnica & Especificações Arquiteturais
 - [`GUIA_MESTRE_MODDING_EXILED_KINGDOMS.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/GUIA_MESTRE_MODDING_EXILED_KINGDOMS.md): Relatório com engenharia reversa completa do motor LibGDX, guias de injeção de código, estruturas de mapa TMX, eventos, UI e teorias de câmera.
-- [`docs/GRIMORIO_ARCANO_TWOHAND_GRIP.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/docs/GRIMORIO_ARCANO_TWOHAND_GRIP.md): Grimório de engenharia com scaffolding cognitivo e diretrizes do Mago do Prompt e Guardião de Bugs para empunhadura de duas mãos.
+- [`docs/ANALISE_FORENSE_EQUIPAMENTOS_DUAS_MAOS.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/docs/ANALISE_FORENSE_EQUIPAMENTOS_DUAS_MAOS.md): Diagnóstico anatômico, censo dos 80 itens e blueprint de oclusão via Joint Mask Sampling.
 - [`docs/ANALISE_ARQUITETURA_MUNDO_ABERTO_CONTINUO.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/docs/ANALISE_ARQUITETURA_MUNDO_ABERTO_CONTINUO.md): Auditoria completa do Guardião de Bugs com os 6 grandes poréns do motor, diagrama dos 12 passos destrutivos de transição e o plano em 5 fases para a grade contínua $3 \times 3$.
-- [`docs/PLANO_UNIVERSAL_RELEASES_LINUX_WINDOWS.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/docs/PLANO_UNIVERSAL_RELEASES_LINUX_WINDOWS.md): Especificação dos instaladores universais em 1 clique (`install.sh` / `install.bat`) e pipeline de empacotamento com CI/CD.
+- [`docs/PLANO_UNIVERSAL_RELEASES_LINUX_WINDOWS.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/docs/PLANO_UNIVERSAL_RELEASES_LINUX_WINDOWS.md): Especificação dos instaladores universais em 1 clique e arquitetura multiplataforma.
 
 ---
 
-### H. Repositório Git e Sincronização Remota no GitHub
+### I. Repositório Git e Sincronização Remota no GitHub
 - Repositório remoto configurado e sincronizado: [`https://github.com/yohanhajy/exiled-kingdoms-overhaul`](https://github.com/yohanhajy/exiled-kingdoms-overhaul).
 - Chave SSH ED25519 registrada e commits devidamente autenticados no branch `main`.
 
@@ -94,10 +102,10 @@ No jogo original, equipar uma arma de duas mãos (espadão, machado de guerra, m
 ## 2. Próximos Passos Planejados (Para o Overhaul)
 - [x] Inicialização de repositório Git local e remoto no GitHub (`exiled-kingdoms-overhaul`).
 - [x] Correção de velocidade de movimentação 360° em todos os eixos (jogador, NPCs, companheiros e monstros).
-- [x] Empunhadura visual com as duas mãos (Two-Handed Stance) para os 80 equipamentos de duas mãos.
+- [x] Auditoria anatômica dos 80 equipamentos de duas mãos e blueprint de oclusão.
 - [x] Auditoria forense e blindagem conceitual para transição contínua de mapas sem telas pretas.
-- [ ] **Fase 1 do Mundo Aberto Contínuo:** Topologia e grafo dos setores externos (`WorldTopology.java`).
-- [ ] **Fase 2 do Mundo Aberto Contínuo:** Implementação do `VirtualCollisionGrid` para quebrar o limite rígido `byte[96][96]`.
-- [ ] **Instaladores Universais em 1 Clique:** Criação de `install.sh` e executável/instalador para Windows com detecção automática da Steam.
+- [x] **Instaladores Universais em 1 Clique:** Criação de `install.sh` (POSIX Linux) e `Setup.exe` (Inno Setup Windows) com detecção automática da Steam e pipeline CI/CD.
+- [ ] **Mundo Aberto Contínuo:** Implementação do `WorldTopology.java` e `VirtualCollisionGrid`.
+- [ ] **Empunhadura Visual 2H:** Arte pixel art dedicada para postura de duas mãos com Joint Mask Sampling.
 - [ ] Customização e modernização de interfaces de usuário (HUD/UI, barras de vida, inventário expandido).
 - [ ] Novas classes, árvores de habilidades e rebalanceamento de combate.

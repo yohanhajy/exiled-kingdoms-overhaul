@@ -1,0 +1,51 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build Universal Releases
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '8'
+
+      - name: Install Inno Setup
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install -y wine wine32 wine64 curl
+          mkdir -p scratch/innosetup
+          curl -L "https://github.com/jrsoftware/issrc/releases/download/is-7_1_0/innosetup-7.1.0-x64.exe" -o scratch/innosetup/setup.exe
+          wine scratch/innosetup/setup.exe /VERYSILENT /DIR="Z:\\$GITHUB_WORKSPACE\\scratch\\innosetup\\app" /NOICONS
+
+      - name: Package Distributions
+        run: |
+          chmod +x package_release.sh installer/windows/build_windows_installer.sh installer/linux/install.sh installer/linux/uninstall.sh
+          ./package_release.sh
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release/ExiledKingdomsOverhaul-Setup-*.exe
+            release/ExiledKingdomsOverhaul-*-Linux.tar.gz
+            release/ExiledKingdomsOverhaul-*-Linux.zip
+            release/ExiledKingdomsOverhaul-*-Universal.zip
+            release/SHA256SUMS.txt
+          generate_release_notes: true
+          draft: false
+          prerelease: false
