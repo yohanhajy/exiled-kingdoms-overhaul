@@ -21,6 +21,8 @@ DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 DirExistsWarning=no
 EnableDirDoesntExistWarning=yes
+AppendDefaultDirName=no
+UsePreviousAppDir=no
 PrivilegesRequired=lowest
 OutputDir=..\..\release
 OutputBaseFilename=ExiledKingdomsOverhaul-Setup-v{#MyAppVersion}
@@ -44,13 +46,39 @@ Source: "..\..\mods\*"; DestDir: "{app}\mods"; Flags: ignoreversion recursesubdi
 Source: "..\..\README.md"; DestDir: "{app}"; DestName: "MOD_README.txt"; Flags: ignoreversion
 
 [Code]
-// Helper function to resolve Steam installation path from Windows Registry
+// Helper function to resolve Steam installation path from Windows Registry or filesystem
 function GetDefaultSteamPath(Param: String): String;
 var
   SteamPath: String;
   GamePath: String;
+  UserName: String;
 begin
-  // 1. Try Current User Registry (Standard for modern Windows Steam clients)
+  // 1. Try Wine / Linux drive mapping if running in Wine
+  UserName := GetEnv('USER');
+  if UserName = '' then UserName := GetEnv('USERNAME');
+  if UserName <> '' then
+  begin
+    GamePath := 'Z:\home\' + UserName + '\.local\share\Steam\steamapps\common\Exiled Kingdoms';
+    if FileExists(GamePath + '\exiledkingdoms.jar') then
+    begin
+      Result := GamePath;
+      Exit;
+    end;
+    GamePath := 'Z:\home\' + UserName + '\.steam\steam\steamapps\common\Exiled Kingdoms';
+    if FileExists(GamePath + '\exiledkingdoms.jar') then
+    begin
+      Result := GamePath;
+      Exit;
+    end;
+    GamePath := 'Z:\home\' + UserName + '\.var\app\com.valvesoftware.Steam\.local\share\Steam\steamapps\common\Exiled Kingdoms';
+    if FileExists(GamePath + '\exiledkingdoms.jar') then
+    begin
+      Result := GamePath;
+      Exit;
+    end;
+  end;
+
+  // 2. Try Current User Registry (Standard for modern Windows Steam clients)
   if RegQueryStringValue(HKEY_CURRENT_USER, 'Software\Valve\Steam', 'SteamPath', SteamPath) then
   begin
     GamePath := SteamPath + '\steamapps\common\Exiled Kingdoms';
@@ -62,7 +90,7 @@ begin
     end;
   end;
 
-  // 2. Try 64-bit / 32-bit Local Machine Registry
+  // 3. Try 64-bit / 32-bit Local Machine Registry
   if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Valve\Steam', 'InstallPath', SteamPath) or
      RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\WOW6432Node\Valve\Steam', 'InstallPath', SteamPath) then
   begin
@@ -75,10 +103,16 @@ begin
     end;
   end;
 
-  // 3. Common Drive Paths Fallback
+  // 4. Common Windows Drives Fallback
   if FileExists('C:\Program Files (x86)\Steam\steamapps\common\Exiled Kingdoms\exiledkingdoms.jar') then
   begin
     Result := 'C:\Program Files (x86)\Steam\steamapps\common\Exiled Kingdoms';
+    Exit;
+  end;
+
+  if FileExists('C:\Program Files\Steam\steamapps\common\Exiled Kingdoms\exiledkingdoms.jar') then
+  begin
+    Result := 'C:\Program Files\Steam\steamapps\common\Exiled Kingdoms';
     Exit;
   end;
 
@@ -88,23 +122,47 @@ begin
     Exit;
   end;
 
+  if FileExists('E:\SteamLibrary\steamapps\common\Exiled Kingdoms\exiledkingdoms.jar') then
+  begin
+    Result := 'E:\SteamLibrary\steamapps\common\Exiled Kingdoms';
+    Exit;
+  end;
+
   // Default path suggestion if not yet installed in a standard location
   Result := 'C:\Program Files (x86)\Steam\steamapps\common\Exiled Kingdoms';
 end;
 
-// Validation on directory page
+// Validation and path correction on directory page
 function NextButtonClick(CurPageID: Integer): Boolean;
 var
   JarFile: String;
+  CurrentDir: String;
 begin
   Result := True;
   if CurPageID = wpSelectDir then
   begin
-    JarFile := ExpandConstant('{app}\exiledkingdoms.jar');
+    CurrentDir := WizardForm.DirEdit.Text;
+
+    // 1. Auto-correct duplicate folder appending (e.g. "Exiled Kingdoms\Exiled Kingdoms")
+    if Pos('\Exiled Kingdoms\Exiled Kingdoms', CurrentDir) > 0 then
+    begin
+      StringChange(CurrentDir, '\Exiled Kingdoms\Exiled Kingdoms', '\Exiled Kingdoms');
+      WizardForm.DirEdit.Text := CurrentDir;
+    end;
+
+    // 2. Auto-correct if user selected "common" instead of "common\Exiled Kingdoms"
+    if (not FileExists(CurrentDir + '\exiledkingdoms.jar')) and
+       (FileExists(CurrentDir + '\Exiled Kingdoms\exiledkingdoms.jar')) then
+    begin
+      CurrentDir := CurrentDir + '\Exiled Kingdoms';
+      WizardForm.DirEdit.Text := CurrentDir;
+    end;
+
+    JarFile := CurrentDir + '\exiledkingdoms.jar';
     if not FileExists(JarFile) then
     begin
       if MsgBox('Aviso: O arquivo "exiledkingdoms.jar" não foi encontrado nesta pasta:' + #13#10#13#10 +
-                ExpandConstant('{app}') + #13#10#13#10 +
+                CurrentDir + #13#10#13#10 +
                 'Tem certeza de que selecionou a pasta correta da Steam onde o Exiled Kingdoms está instalado?' + #13#10#13#10 +
                 'Deseja prosseguir mesmo assim?',
                 mbConfirmation, MB_YESNO) = IDNO then
