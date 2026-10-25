@@ -67,14 +67,25 @@ No jogo original, o criador cometeu um erro matemático clássico de projeção 
 
 ---
 
-### F. Documentação Técnica & Especificações Arquiteturais
+### F. Empunhadura Visual de Duas Mãos (Two-Handed Visual Grip)
+No jogo original, equipar uma arma de duas mãos (espadão, machado de guerra, marreta, cajado ou arco) desativava a mão secundária no inventário, mas no modelo do personagem a arma continuava sendo segurada com apenas uma mão, deixando a outra mão solta e inerte na cintura.
+- **Auditoria Forense:** Mapeados todos os 80 equipamentos de duas mãos do jogo, divididos em 8 arquétipos de spritesheet (`greatsword`, `zweihander`, `battleaxe`, `maul`, `greatstaff`, `staff`, `longbow`, `shortbow`).
+- **16 Novos Spritesheets de Grip:** Geradas 16 texturas ($1260 \times 1540$ RGBA) para esqueletos masculinos e femininos (`male_offhand_twohand_[arma].png` e `female_offhand_twohand_[arma].png`).
+- **Injeção Dinâmica em [`EquipmentVisuals.java`](file:///home/yhn/Projetos/exiled-kingdoms-mod/src/net/fdgames/mods/EquipmentVisuals.java)**:
+  * Quando `character.sheet.g().twohanded == true`, a Camada 5 (Offhand) injeta automaticamente o spritesheet de empunhadura secundária.
+  * O braço e mão secundária cruzam o abdômen e seguram firmemente o cabo/haste da arma em 3D layer sandwich, sem afetar armas de uma mão e escudos.
+
+---
+
+### G. Documentação Técnica & Especificações Arquiteturais
 - [`GUIA_MESTRE_MODDING_EXILED_KINGDOMS.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/GUIA_MESTRE_MODDING_EXILED_KINGDOMS.md): Relatório com engenharia reversa completa do motor LibGDX, guias de injeção de código, estruturas de mapa TMX, eventos, UI e teorias de câmera.
+- [`docs/GRIMORIO_ARCANO_TWOHAND_GRIP.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/docs/GRIMORIO_ARCANO_TWOHAND_GRIP.md): Grimório de engenharia com scaffolding cognitivo e diretrizes do Mago do Prompt e Guardião de Bugs para empunhadura de duas mãos.
 - [`docs/ANALISE_ARQUITETURA_MUNDO_ABERTO_CONTINUO.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/docs/ANALISE_ARQUITETURA_MUNDO_ABERTO_CONTINUO.md): Auditoria completa do Guardião de Bugs com os 6 grandes poréns do motor, diagrama dos 12 passos destrutivos de transição e o plano em 5 fases para a grade contínua $3 \times 3$.
 - [`docs/PLANO_UNIVERSAL_RELEASES_LINUX_WINDOWS.md`](file:///home/yhn/Projetos/exiled-kingdoms-mod/docs/PLANO_UNIVERSAL_RELEASES_LINUX_WINDOWS.md): Especificação dos instaladores universais em 1 clique (`install.sh` / `install.bat`) e pipeline de empacotamento com CI/CD.
 
 ---
 
-### G. Repositório Git e Sincronização Remota no GitHub
+### H. Repositório Git e Sincronização Remota no GitHub
 - Repositório remoto configurado e sincronizado: [`https://github.com/yohanhajy/exiled-kingdoms-overhaul`](https://github.com/yohanhajy/exiled-kingdoms-overhaul).
 - Chave SSH ED25519 registrada e commits devidamente autenticados no branch `main`.
 
@@ -83,9 +94,10 @@ No jogo original, o criador cometeu um erro matemático clássico de projeção 
 ## 2. Próximos Passos Planejados (Para o Overhaul)
 - [x] Inicialização de repositório Git local e remoto no GitHub (`exiled-kingdoms-overhaul`).
 - [x] Correção de velocidade de movimentação 360° em todos os eixos (jogador, NPCs, companheiros e monstros).
+- [x] Empunhadura visual com as duas mãos (Two-Handed Stance) para os 80 equipamentos de duas mãos.
 - [x] Auditoria forense e blindagem conceitual para transição contínua de mapas sem telas pretas.
 - [ ] **Fase 1 do Mundo Aberto Contínuo:** Topologia e grafo dos setores externos (`WorldTopology.java`).
 - [ ] **Fase 2 do Mundo Aberto Contínuo:** Implementação do `VirtualCollisionGrid` para quebrar o limite rígido `byte[96][96]`.
-- [ ] **Instaladores Universais em 1 Clique:** Criação de `install.sh` e `install.bat` com detecção automática da Steam.
+- [ ] **Instaladores Universais em 1 Clique:** Criação de `install.sh` e executável/instalador para Windows com detecção automática da Steam.
 - [ ] Customização e modernização de interfaces de usuário (HUD/UI, barras de vida, inventário expandido).
 - [ ] Novas classes, árvores de habilidades e rebalanceamento de combate.

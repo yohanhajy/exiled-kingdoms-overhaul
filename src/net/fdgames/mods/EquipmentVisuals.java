@@ -28,11 +28,10 @@ public class EquipmentVisuals {
             }
         }
 
-        // 2. Escudo ou arma secundária (slot_offhand)
-        // Se a arma principal for de duas mãos (greatsword, bows, greataxe, etc.),
-        // não renderiza item na mão secundária para evitar sobreposição impossível
+        // 2. Mão secundária: Escudo OU Empunhadura Visual de Duas Mãos
         boolean isTwoHanded = (character.sheet.g() != null && character.sheet.g().twohanded);
         if (!isTwoHanded) {
+            // Arma de uma mão: renderiza escudo ou arma secundária se equipada
             String offhand = inv.n();
             if (offhand != null && !offhand.isEmpty()) {
                 String assetName = "composite/" + gender + "_offhand_" + offhand;
@@ -41,13 +40,20 @@ public class EquipmentVisuals {
                     character.spriteIndex.a(Integer.valueOf(id));
                 }
             }
+        } else if (mainhand != null && !mainhand.isEmpty()) {
+            // Arma de duas mãos: injeta a empunhadura visual secundária correspondente
+            String gripAsset = "composite/" + gender + "_offhand_twohand_" + mainhand;
+            int id = getOrLoadAsset(gripAsset);
+            if (id != -1) {
+                character.spriteIndex.a(Integer.valueOf(id));
+            }
         }
     }
 
     private static int getOrLoadAsset(String name) {
         int id = GameAssets.a(name);
         if (id == -1) {
-            // Se o asset foi carregado agora, uma segunda chamada imediata retorna o índice alocado
+            // Se o asset foi registrado pelo loader agora, uma segunda chamada retorna o índice alocado
             id = GameAssets.a(name);
         }
         return id;
