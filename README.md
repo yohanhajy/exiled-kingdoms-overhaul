@@ -1,7 +1,17 @@
 # Exiled Kingdoms Overhaul (Linux & Windows)
 
-> Projeto de modernização, melhorias de qualidade de vida (QoL), correções de conteúdo cortado e expansão para a versão Steam de **Exiled Kingdoms**.
-> Compatibilidade universal com **Linux** (Ubuntu, Debian, Fedora, Arch, openSUSE, SteamOS / Steam Deck) e **Windows**.
+> Projeto experimental de modernização, melhorias de qualidade de vida (QoL), correções de conteúdo cortado e expansão para a versão Steam de **Exiled Kingdoms**.
+
+---
+
+> [!IMPORTANT]
+> ### 🤖 Projeto Amador Desenvolvido com Inteligência Artificial
+> Este projeto é um **trabalho amador e experimental de modding**, desenvolvido com o auxílio direto de Inteligência Artificial:
+> * **Google Antigravity**: Ambiente de execução e harness agêntico de desenvolvimento de software.
+> * **Google Gemini 3.8 Flash**: Geração e refatoração de código, automação de scripts de patching e geração procedural de spritesheets.
+> * **Google Gemini Argon (Low)**: Raciocínio arquitetural para os desafios e tarefas de engenharia reversa de maior complexidade.
+>
+> ⚠️ **Aviso sobre Releases:** Este projeto encontra-se em fase ativa de experimentação interna. **Não há releases ou instaladores públicos (seja para Windows ou Linux) disponíveis no momento.** Não utilize nem procure pacotes executáveis prontos antes do momento oportuno.
 
 ---
 
@@ -11,6 +21,10 @@ O **Exiled Kingdoms Overhaul** é um conjunto de modificações profundas e modu
 
 ### Principais Funcionalidades Implementadas
 
+* **Empunhadura Realista para Armas de Duas Mãos (2H Stance - V8 Universal)**:
+  * Sistema visual onde armas de duas mãos (machados de batalha, montantes, martelos pesados e cajados mágicos) são empunhadas com ambas as mãos apoiadas no ombro.
+  * Algoritmo de rastreamento com compensação vetorial de cabeça (*head-delta offset*) para manter a empunhadura natural em todas as 8 direções e nos 5 frames do ciclo de caminhada.
+  * 65 spritesheets compostos gerados para cobertura universal: personagem principal (masculino e feminino), companheiros, mercenários, NPCs e chefes.
 * **Armas e Escudos Visíveis em Tempo Real**:
   * Resgate e ativação do sistema cortado de sprites compostos da engine original.
   * Todas as armas (espadas, machados, martelos, adagas, cajados, arcos) e escudos aparecem empunhados pelo personagem e companheiros ao equipar.
@@ -18,7 +32,7 @@ O **Exiled Kingdoms Overhaul** é um conjunto de modificações profundas e modu
   * Correção do bug nativo de proporção 2:1 da engine que deixava a movimentação vertical (cima/baixo) 50% mais lenta que a horizontal.
   * Normalização vetorial Euclidiana para velocidade homogênea em todas as direções para o jogador, companheiros e monstros perseguidores.
 * **Fim das Armaduras Genéricas (40 Novos Spritesheets)**:
-  * 40 novas folhas de texturas compostas em alta definição ($1260 \times 1540$ RGBA), corrigindo armaduras, capas, elmos e escudos que usavam gráficos cinzas genéricos no jogo original (Tolassiana Vermelha, Gelo Ancestral Azul, Malha da Floresta, Placas da Legião Douradas, Obsidiana Negra, Placas Thuramianas/Myrosianas Nobres, Couro de Troll Verde, Capuzes Mágicos Coloridos).
+  * 40 folhas de texturas compostas em alta definição ($1260 \times 1540$ RGBA), corrigindo armaduras, capas, elmos e escudos que usavam gráficos cinzas genéricos no jogo original (Tolassiana Vermelha, Gelo Ancestral Azul, Malha da Floresta, Placas da Legião Douradas, Obsidiana Negra, Placas Thuramianas/Myrosianas Nobres, Couro de Troll Verde, Capuzes Mágicos Coloridos).
 * **Auditoria Completa de Equipamentos (`items.txt`)**:
   * Revisão integral dos 432 itens equipáveis do jogo.
   * Correção de bugs visuais nativos (elmos que deixavam o personagem careca ou com malha trocada).
@@ -27,46 +41,23 @@ O **Exiled Kingdoms Overhaul** é um conjunto de modificações profundas e modu
 
 ---
 
-## 📦 Como Instalar (Para Jogadores)
+## 🧪 Ambiente de Desenvolvimento e Testes
 
-Não é necessário compilar nem instalar ferramentas de desenvolvimento. Basta baixar o pacote correspondente na aba [Releases](https://github.com/yohanhajy/exiled-kingdoms-overhaul/releases):
-
-### Windows
-1. Baixe o executável oficial **`ExiledKingdomsOverhaul-Setup-v1.0.0.exe`**.
-2. Dê dois cliques para abrir o assistente de instalação visual.
-3. A pasta do Exiled Kingdoms na Steam será detectada automaticamente (via Registro do Windows).
-4. Clique em **Avançar** e **Instalar**.
-5. Abra o jogo normalmente pela Steam!
-6. *Para desinstalar:* Utilize o desinstalador em "Configurações > Aplicativos" do Windows ou execute `unins000.exe` na pasta do jogo.
-
-### Linux & Steam Deck
-1. Baixe **`ExiledKingdomsOverhaul-v1.0.0-Linux.tar.gz`** (ou `.zip`).
-2. Extraia o arquivo e abra um terminal na pasta extraída.
-3. Execute o instalador universal:
-   ```bash
-   ./install.sh
-   ```
-4. O script detectará automaticamente a instalação do Steam (incluindo Ubuntu/Debian, Fedora, Arch, openSUSE, Flatpak, Snap e Steam Deck) e aplicará o mod.
-5. *Para desinstalar:* Execute `./uninstall.sh` a qualquer momento para restaurar o jogo original.
-
----
-
-## 🛠️ Para Desenvolvedores e Modders
+Por ser um projeto em desenvolvimento ativo, as modificações são testadas diretamente pelo código-fonte:
 
 ### Estrutura do Repositório
-* `src/`: Código-fonte Java dos patches de motor e QoL.
-* `mods/`: Bytecodes Java 7 compilados e assets prontos para injeção.
-* `installer/`: Scripts do instalador universal Linux e Inno Setup do Windows.
-* `tools/`: Utilitários de bytecode (`javassist.jar`, `cfr.jar`).
-* `docs/`: Laudos periciais, relatórios forenses e arquiteturas de sistema.
+* `src/`: Código-fonte Java dos patches de motor e QoL (`EquipmentVisuals.java`, etc.).
+* `mods/`: Bytecodes compilados para Java 7 (major version 51) e assets customizados prontos para injeção.
+* `tools/`: Utilitários de análise de bytecode e scripts de geração de assets (ex: `build_2h_postura1.py`).
+* `docs/`: Documentações técnicas, laudos de engenharia reversa e arquitetura do motor.
 
-### Compilação e Empacotamento
+### Compilação e Sincronização Local
 ```bash
-# Compilar código Java e sincronizar com o jogo local
+# Compilar patches Java (compatíveis com Java 7) e sincronizar assets com a Steam local
 ./build_mod.sh
 
-# Gerar pacotes de release universais (Windows Setup.exe + Linux tarball/zip)
-./package_release.sh
+# Reverter e desinstalar o mod da pasta local da Steam a qualquer momento
+./uninstall_mod.sh
 ```
 
 ---
@@ -78,10 +69,10 @@ Não é necessário compilar nem instalar ferramentas de desenvolvimento. Basta 
 - [x] 40 spritesheets personalizados para equipamentos únicos.
 - [x] Auditoria de banco de dados de itens e balanceamento básico.
 - [x] Movimentação isométrica uniforme em 360° para jogador e NPCs.
-- [x] Instaladores universais em 1 clique (Setup.exe para Windows e POSIX install.sh para Linux).
-- [ ] Empunhadura visual artesanal para armas de duas mãos (2H Stance).
+- [x] Empunhadura visual artesanal para armas de duas mãos (2H Stance V8 Universal).
 - [ ] Mundo Aberto Contínuo (*Seamless Chunk Streaming 3x3* sem telas pretas de transição).
 - [ ] Modernização da interface de usuário (HUD, barras de status, minimapa).
+- [ ] Empacotamento de instaladores universais e releases públicas oficiais (planejado para quando o mod atingir maturação completa).
 
 ---
 
